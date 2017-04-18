@@ -87,11 +87,15 @@ Add the custom form field template to your config.yml:
 ```
 # app/config/config.yml
 twig:
-    debug:            "%kernel.debug%"
-    strict_variables: "%kernel.debug%"
-    form:
-        resources:
-            - 'LibrinfoEmailBundle:form:fields.html.twig'
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+    form_themes:
+        - 'SonataCoreBundle:Form:datepicker.html.twig'
+        - 'SonataCoreBundle:Form:colorpicker.html.twig'
+        - 'BlastCoreBundle:Admin/Form:fields.html.twig'
+        - 'BlastUtilsBundle:Form:fields.html.twig'
+        - 'BlastBaseEntitiesBundle:Form:fields.html.twig'
+        - 'LibrinfoMediaBundle:Form:fields.html.twig'
 ```
 ### Spooling
 
