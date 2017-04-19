@@ -46,8 +46,26 @@ Configure the SonataAdminBundle. e.g.:
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
-            
-            // your personal bundles
+            new Sonata\IntlBundle\SonataIntlBundle(),
+
+            // Blast
+            new Blast\OuterExtensionBundle\BlastOuterExtensionBundle(),
+            new Blast\CoreBundle\BlastCoreBundle(),
+            new lbr\BlastTestBundle\BlastTestBundle(),
+            new Blast\BaseEntitiesBundle\BlastBaseEntitiesBundle(),
+            new Blast\UtilsBundle\BlastUtilsBundle(),
+
+            // Wisiwig editor
+            new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
+
+            // Attachments
+            new Librinfo\MediaBundle\LibrinfoMediaBundle(), 
+
+            // EmailBundle
+            new Librinfo\EmailBundle\LibrinfoEmailBundle(),
+          
+            // Your personal bundles
+            // ...
         );
     }
     // ...
