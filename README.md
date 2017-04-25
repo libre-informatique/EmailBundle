@@ -80,6 +80,14 @@ _sonata_admin:
     resource: .
     type: sonata_admin
     prefix: /
+
+blast_core:
+    resource: "@BlastCoreBundle/Resources/config/routing.yml" 
+    prefix:   /admin
+
+email:
+    resource: "@LibrinfoEmailBundle/Resources/config/routing.yml"
+    prefix: /admin
 ```
 
 ```
