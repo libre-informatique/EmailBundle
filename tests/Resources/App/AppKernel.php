@@ -12,21 +12,29 @@ class AppKernel extends Kernel
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
-            # new Symfony\Bundle\MonologBundle\MonologBundle(),
-            # new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
+            new Symfony\Bundle\MonologBundle\MonologBundle(),
+            new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
-            # new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-
-            # Sonata
+            new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            new AppBundle\AppBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            // Librinfo
+            new Librinfo\EmailBundle\LibrinfoEmailBundle(),
+            new Librinfo\MediaBundle\LibrinfoMediaBundle(),
+            // Sonata
             new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
-            # new Sonata\IntlBundle\SonataIntlBundle(),
-
-            # Blast
+            // new Sonata\IntlBundle\SonataIntlBundle(),
+            // Blast
+            new Blast\OuterExtensionBundle\BlastOuterExtensionBundle(),
             new Blast\CoreBundle\BlastCoreBundle(),
+            new Blast\BaseEntitiesBundle\BlastBaseEntitiesBundle(),
+            new Blast\UtilsBundle\BlastUtilsBundle(),
+            // Wisiwig editor
+            new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
         ];
         
         return $bundles;
@@ -39,11 +47,11 @@ class AppKernel extends Kernel
     
     public function getCacheDir()
     {
-        return sys_get_temp_dir() . '/{BundleName}/cache/' . $this->getEnvironment();
+        return sys_get_temp_dir() . '/EmailBundle/cache/' . $this->getEnvironment();
     }
 
     public function getLogDir()
     {
-        return sys_get_temp_dir() . '/{BundleName}/logs';
+        return sys_get_temp_dir() . '/EmailBundle/logs';
     }
 }
