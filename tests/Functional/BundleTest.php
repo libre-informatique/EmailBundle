@@ -19,7 +19,7 @@ class BundleTest extends KernelTestCase {
     public function testServicesAreInitializable() {
 
         $serviceIds = array_filter($this->container->getServiceIds(), function ($serviceId) {
-            return 0 === strpos($serviceId, librinfo_email . '.');
+            return 0 === strpos($serviceId, "librinfo_email" . '.');
         });
 
         foreach ($serviceIds as $serviceId) {
