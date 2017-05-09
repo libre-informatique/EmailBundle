@@ -36,7 +36,7 @@ public function registerBundles()
 
 ## Configuration
 
-### Dependences
+### Dependencies
 
 ```php
     // app/AppKernel.php
