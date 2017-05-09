@@ -4,17 +4,15 @@
 [![Coveralls](https://img.shields.io/coveralls/libre-informatique/EmailBundle.svg?style=flat-square)][coveralls]
 [![License](https://img.shields.io/github/license/libre-informatique/EmailBundle.svg?style=flat-square)][license]
 
-
 [![Latest Stable Version](https://poser.pugx.org/libre-informatique/email-bundle/v/stable)](https://packagist.org/packages/libre-informatique/email-bundle)
 [![Latest Unstable Version](https://poser.pugx.org/libre-informatique/email-bundle/v/unstable)](https://packagist.org/packages/libre-informatique/email-bundle)
 [![Total Downloads](https://poser.pugx.org/libre-informatique/email-bundle/downloads)](https://packagist.org/packages/libre-informatique/email-bundle)
-
-
 
 ## About
 
  The Libre Informatique *EmailBundle* leverages Swiftmailer and the Libre Informatique *CoreBundle* to provide seemless email and newsletter functionalities.
  Features include database spooling, configurable spool flush command, email openings and link clicks tracking along with stats display, inline attachments, templating, duplication, ... 
+
 ## Installation
 
 ``` $ composer require libre-informatique/email-bundle ```
@@ -38,8 +36,7 @@ public function registerBundles()
 
 ## Configuration
 
-### First, make sure to configure the bundles LibrinfoEmailBundle depends on properly.
-
+### Dependences
 
 ```php
     // app/AppKernel.php
@@ -76,6 +73,7 @@ public function registerBundles()
     }
     // ...
 ```
+
 ```
 # app/config/routing.yml
 admin:
@@ -129,6 +127,7 @@ twig:
         - 'BlastBaseEntitiesBundle:Form:fields.html.twig'
         - 'LibrinfoMediaBundle:Form:fields.html.twig'
 ```
+
 ### Spooling
 
 You have to configure two mailers as follows in order to use the database spooling feature (one for direct sned, the other for spool send)
