@@ -10,7 +10,6 @@
 
 namespace Librinfo\EmailBundle\Entity;
 
-use AppBundle\Entity\OuterExtension\LibrinfoEmailBundle\EmailExtension;
 use Blast\BaseEntitiesBundle\Entity\Traits\BaseEntity;
 use Blast\BaseEntitiesBundle\Entity\Traits\Loggable;
 use Blast\BaseEntitiesBundle\Entity\Traits\Searchable;
@@ -26,7 +25,6 @@ class Email extends Spoolable
 {
     use BaseEntity;
     use OuterExtensible;
-    use EmailExtension;
     use Searchable;
     use Loggable;
     use Timestampable;
@@ -130,6 +128,7 @@ class Email extends Spoolable
     {
         $this->sent = false;
         $this->isTemplate = false;
+        $this->isTest= false;
         $this->initCollections();
         $this->initOuterExtendedClasses();
     }
