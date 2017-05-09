@@ -40,17 +40,6 @@
             "Librinfo\\EmailBundle\\Tests\\": "tests/"
         }
     },
-    "minimum-stability": "dev",
-    "require": {
-        "symfony/swiftmailer-bundle": "^2.5",
-        "blast-project/core-bundle": "dev-master",
-        "blast-project/base-entities-bundle": "dev-master",
-        "blast-project/outer-extension-bundle": "dev-master",
-        "blast-project/utils-bundle": "dev-master",
-        "libre-informatique/media-bundle": "dev-master",
-        "stfalcon/tinymce-bundle": "2.1",
-        "html2text/html2text": "^4.0"
-    },
     "scripts": {
         "post-install-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",

@@ -8,6 +8,7 @@
 [![Latest Unstable Version](https://poser.pugx.org/libre-informatique/email-bundle/v/unstable)](https://packagist.org/packages/libre-informatique/email-bundle)
 [![Total Downloads](https://poser.pugx.org/libre-informatique/email-bundle/downloads)](https://packagist.org/packages/libre-informatique/email-bundle)
 
+
 ## About
 
  The Libre Informatique *EmailBundle* leverages Swiftmailer and the Libre Informatique *CoreBundle* to provide seemless email and newsletter functionalities.
@@ -172,3 +173,4 @@ That's it !
 [travis]: https://travis-ci.org/libre-informatique/EmailBundle
 [coveralls]: https://coveralls.io/github/libre-informatique/EmailBundle?branch=master
 [license]: ./LICENCE.md
+
