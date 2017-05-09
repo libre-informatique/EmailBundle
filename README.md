@@ -1,5 +1,16 @@
 # SymfonyLibrinfoEmailBundle
 
+[![Travis](https://img.shields.io/travis/libre-informatique/EmailBundle.svg?style=flat-square)][travis]
+[![Coveralls](https://img.shields.io/coveralls/libre-informatique/EmailBundle.svg?style=flat-square)][coveralls]
+[![License](https://img.shields.io/github/license/libre-informatique/EmailBundle.svg?style=flat-square)][license]
+
+
+[![Latest Stable Version](https://poser.pugx.org/libre-informatique/email-bundle/v/stable)](https://packagist.org/packages/libre-informatique/email-bundle)
+[![Latest Unstable Version](https://poser.pugx.org/libre-informatique/email-bundle/v/unstable)](https://packagist.org/packages/libre-informatique/email-bundle)
+[![Total Downloads](https://poser.pugx.org/libre-informatique/email-bundle/downloads)](https://packagist.org/packages/libre-informatique/email-bundle)
+
+
+
 ## About
 
  The Libre Informatique *EmailBundle* leverages Swiftmailer and the Libre Informatique *CoreBundle* to provide seemless email and newsletter functionalities.
@@ -16,21 +27,19 @@ public function registerBundles()
     $bundles = array(
         // ...
             
-        // The libre-informatique bundles
+        // the libre-informatique bundles
         new Librinfo\EmailBundle\LibrinfoEmailBundle(),
             
         // your personal bundles
+        // ...
     );
 }
 ```
 
 ## Configuration
 
-First, make sure to configure the bundles LibrinfoEmailBundle depends on properly.
+### First, make sure to configure the bundles LibrinfoEmailBundle depends on properly.
 
-### The Sonata bundles
-
-Configure the SonataAdminBundle. e.g.:
 
 ```php
     // app/AppKernel.php
@@ -55,16 +64,13 @@ Configure the SonataAdminBundle. e.g.:
             new Blast\BaseEntitiesBundle\BlastBaseEntitiesBundle(),
             new Blast\UtilsBundle\BlastUtilsBundle(),
 
+            // Attachments
+            new Librinfo\MediaBundle\LibrinfoMediaBundle(), 
+          
             // Wisiwig editor
             new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
 
-            // Attachments
-            new Librinfo\MediaBundle\LibrinfoMediaBundle(), 
-
-            // EmailBundle
-            new Librinfo\EmailBundle\LibrinfoEmailBundle(),
-          
-            // Your personal bundles
+            // your personal bundles
             // ...
         );
     }
@@ -162,3 +168,8 @@ access_control:
 ```
 
 That's it !
+
+
+[travis]: https://travis-ci.org/libre-informatique/EmailBundle
+[coveralls]: https://coveralls.io/github/libre-informatique/EmailBundle?branch=master
+[license]: ./LICENCE.md
