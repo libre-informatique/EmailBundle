@@ -12,17 +12,17 @@ abstract class Spoolable
     private $message;
 
     /**
-     * @var String
+     * @var string
      */
     private $messageId;
 
     /**
-     * @var String
+     * @var string
      */
     private $status;
 
     /**
-     * @var String
+     * @var string
      */
     private $environment;
 

@@ -24,7 +24,7 @@ trait HasEmail
      *
      * @param object $email
      *
-     * @return Object
+     * @return object
      */
     public function setEmail($email)
     {
