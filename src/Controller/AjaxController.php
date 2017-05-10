@@ -22,9 +22,7 @@ class AjaxController extends Controller
 
     /**
      * 
-     * @param String $fileName
-     * @param String $fileSize
-     * @param String $tempId
+     * @param String $fileId
      * @return Response img tag that will be embedded into the main content
      */
     public function addToContentAction($fileId)

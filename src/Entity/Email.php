@@ -492,7 +492,7 @@ class Email extends Spoolable
      *
      * @param \Librinfo\EmailBundle\Entity\EmailReceipt $receipt
      *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise
      */
     public function removeReceipt(\Librinfo\EmailBundle\Entity\EmailReceipt $receipt)
     {
@@ -528,7 +528,7 @@ class Email extends Spoolable
      *
      * @param \Librinfo\EmailBundle\Entity\EmailLink $link
      *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise
      */
     public function removeLink(\Librinfo\EmailBundle\Entity\EmailLink $link)
     {

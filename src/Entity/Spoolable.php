@@ -72,7 +72,7 @@ abstract class Spoolable
     }
 
     /**
-     * @param $message string Serialized \Swift_Mime_Message
+     * @param $messageId string Serialized \Swift_Mime_Message
      */
     public function setMessageId($messageId)
     {
