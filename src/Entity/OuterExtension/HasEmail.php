@@ -22,7 +22,7 @@ trait HasEmail
     /**
      * Set email
      *
-     * @param Email
+     * @param Email $email
      *
      * @return $this
      */
