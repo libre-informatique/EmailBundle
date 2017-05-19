@@ -19,6 +19,14 @@
         "libre-informatique/sonata-sylius-user-bundle": "^0.4",
         "libre-informatique/email-crm-bundle": "^0.4"
     },
+    "config": {
+        "sllh-composer-lint": {
+            "php": true,
+            "type": true,
+            "minimum-stability": false,
+            "version-constraints": true
+        }
+    },
     "license": "LGPL-3.0",
     "keywords": [
         "email",
