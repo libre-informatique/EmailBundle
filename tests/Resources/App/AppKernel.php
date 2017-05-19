@@ -1,11 +1,20 @@
 <?php
 
+/*
+ * This file is part of the Blast Project package.
+ *
+ * Copyright (C) 2015-2017 Libre Informatique
+ *
+ * This file is licenced under the GNU GPL v3.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
 class AppKernel extends Kernel
 {
-    
     public function registerBundles()
     {
         $bundles = [
@@ -35,22 +44,22 @@ class AppKernel extends Kernel
             // Wisiwig editor
             new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
         ];
-        
+
         return $bundles;
     }
-    
+
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        $loader->load(__DIR__ . '/config/config.yml');
+        $loader->load(__DIR__.'/config/config.yml');
     }
-    
+
     public function getCacheDir()
     {
-        return sys_get_temp_dir() . '/EmailBundle/cache/' . $this->getEnvironment();
+        return sys_get_temp_dir().'/EmailBundle/cache/'.$this->getEnvironment();
     }
 
     public function getLogDir()
     {
-        return sys_get_temp_dir() . '/EmailBundle/logs';
+        return sys_get_temp_dir().'/EmailBundle/logs';
     }
 }
