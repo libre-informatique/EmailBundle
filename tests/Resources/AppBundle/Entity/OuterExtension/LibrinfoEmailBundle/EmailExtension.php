@@ -12,6 +12,4 @@ namespace AppBundle\Entity\OuterExtension\LibrinfoEmailBundle;
 
 trait EmailExtension
 {
-    use \Librinfo\SonataSyliusUserBundle\Entity\Traits\Traceable;
-    use \Librinfo\EmailCRMBundle\Entity\OuterExtension\HasEmailRecipients;
 }

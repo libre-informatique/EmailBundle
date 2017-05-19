@@ -2,7 +2,6 @@
     "name": "libre-informatique/email-bundle",
     "type": "symfony-bundle",
     "description": "Email Bundle for Symfony",
-    "minimum-stability": "dev",
     "require": {
         "php": ">=5.6",
         "symfony/symfony": "3.2.*",
@@ -15,17 +14,7 @@
         "html2text/html2text": "^4.0"
     },
     "require-dev": {
-	"symfony/phpunit-bridge": "3.2.*",
-        "libre-informatique/sonata-sylius-user-bundle": "^0.4",
-        "libre-informatique/email-crm-bundle": "^0.4"
-    },
-    "config": {
-        "sllh-composer-lint": {
-            "php": true,
-            "type": true,
-            "minimum-stability": false,
-            "version-constraints": true
-        }
+	"symfony/phpunit-bridge": "3.2.*"
     },
     "license": "LGPL-3.0",
     "keywords": [
