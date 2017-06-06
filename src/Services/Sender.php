@@ -74,7 +74,7 @@ class Sender
     
     /**
      * Sends an email
-     * 
+     *
      * @param Email $email  The email to send
      * @return int          Number of successfully sent emails
      */
@@ -86,22 +86,23 @@ class Sender
         
         $this->needsSpool = count($addresses) > 1;
         
-        if( $this->email->getIsTest() ){
-            $testAddressToArray = explode(';',$this->email->getTestAddress());
+        if ($this->email->getIsTest()) {
+            $testAddressToArray = explode(';', $this->email->getTestAddress());
             return $this->directSend($testAddressToArray);
         }
-        if( $this->needsSpool )
+        if ($this->needsSpool) {
             return $this->spoolSend($addresses);
-        else
+        } else {
             return $this->directSend($addresses);
+        }
     }
 
     /**
      * Sends the mail directly
-     * 
+     *
      * @param array $to                The To addresses
      * @param array $cc                The Cc addresses (optional)
-     * @param array $bcc               The Bcc addresses (optional) 
+     * @param array $bcc               The Bcc addresses (optional)
      * @param array $failedRecipients  An array of failures by-reference (optional)
      *
      * @return int The number of successful recipients. Can be 0 which indicates failure
@@ -118,7 +119,7 @@ class Sender
 
     /**
      * Spools the email
-     * 
+     *
      * @param array $addresses
      */
     protected function spoolSend($addresses)
@@ -134,7 +135,7 @@ class Sender
 
     /**
      * Creates Swift_Message from Email
-     * 
+     *
      * @param array $to   The To addresses
      * @param string $message
      * @return Swift_Message
@@ -143,22 +144,24 @@ class Sender
     {
         $content = $this->email->getContent();
 
-        if( $message == null )
+        if ($message == null) {
             $message = \Swift_Message::newInstance();
-        foreach ( $to as $key => $address )
+        }
+        foreach ($to as $key => $address) {
             $to[$key] = trim($address);
+        }
         
         // do not modify yet email content if it goes to spool
-        if ( !$this->needsSpool )
-        {
+        if (!$this->needsSpool) {
             $content = $this->inlineAttachmentsHandler->handle($content, $message);
             
-            if( $this->email->getTracking())
-                try{
+            if ($this->email->getTracking()) {
+                try {
                     $content = $this->tracker->addTracking($content, $to[0], $this->email->getId());
-                 }catch(\Exception $e){
+                } catch (\Exception $e) {
                     die($e);
                 }
+            }
         }
         
         $message->setSubject($this->email->getFieldSubject())
@@ -169,11 +172,13 @@ class Sender
         ;
         
         
-        if( !empty($cc = $this->email->getFieldCc()) )
+        if (!empty($cc = $this->email->getFieldCc())) {
             $message->setCc($cc);
+        }
         
-        if( !empty($bcc = $this->email->getFieldBcc()) )
+        if (!empty($bcc = $this->email->getFieldBcc())) {
             $message->setBcc($bcc);
+        }
 
         $this->addAttachments($message);
 
@@ -186,10 +191,8 @@ class Sender
      */
     protected function addAttachments($message)
     {
-        if ( count($this->attachments ) > 0 )
-        {
-            foreach ( $this->attachments as $file )
-            {
+        if (count($this->attachments) > 0) {
+            foreach ($this->attachments as $file) {
                 $attachment = \Swift_Attachment::newInstance()
                         ->setFilename($file->getName())
                         ->setContentType($file->getMimeType())
@@ -206,14 +209,14 @@ class Sender
      */
     protected function updateEmailEntity($message)
     {
-        if ( $this->needsSpool )
+        if ($this->needsSpool) {
             //set the id of the swift message so it can be retrieved from spool flushQueue()
             $this->email->setMessageId($message->getId());
-        else if ( !$this->email->getIsTest() )
+        } elseif (!$this->email->getIsTest()) {
             $this->email->setSent(true);
+        }
 
         $this->manager->persist($this->email);
         $this->manager->flush();
     }
-
 }
