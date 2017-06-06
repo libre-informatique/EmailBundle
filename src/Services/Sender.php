@@ -86,9 +86,10 @@ class Sender
         
         $this->needsSpool = count($addresses) > 1;
         
-        if( $this->email->getIsTest() )
-            return $this->directSend($this->email->getTestAdress());
-        
+        if( $this->email->getIsTest() ){
+            $testAddressToArray = explode(';',$this->email->getTestAddress());
+            return $this->directSend($testAddressToArray);
+        }
         if( $this->needsSpool )
             return $this->spoolSend($addresses);
         else
@@ -144,7 +145,6 @@ class Sender
 
         if( $message == null )
             $message = \Swift_Message::newInstance();
-        
         foreach ( $to as $key => $address )
             $to[$key] = trim($address);
         
