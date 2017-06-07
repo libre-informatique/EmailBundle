@@ -82,11 +82,13 @@ class Sender
     {
         $this->email = $email;
         $this->attachments = $email->getAttachments();
+        // @TODO : getFieldTo() should return array (do the explode in this getter would be better)
         $addresses = explode(';', $this->email->getFieldTo());
         
         $this->needsSpool = count($addresses) > 1;
         
         if ($this->email->getIsTest()) {
+            // @TODO : getTestAddress() should return array (do the explode in this getter would be better)
             $testAddressToArray = explode(';', $this->email->getTestAddress());
             return $this->directSend($testAddressToArray);
         }
@@ -147,7 +149,11 @@ class Sender
         if ($message == null) {
             $message = \Swift_Message::newInstance();
         }
-        foreach ($to as $key => $address) {
+        
+        if(!is_array($to))
+            $to = [$to];
+        
+        foreach ( $to as $key => $address )
             $to[$key] = trim($address);
         }
         
