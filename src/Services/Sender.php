@@ -153,7 +153,7 @@ class Sender
         if(!is_array($to))
             $to = [$to];
         
-        foreach ( $to as $key => $address )
+        foreach ( $to as $key => $address ) {
             $to[$key] = trim($address);
         }
         
