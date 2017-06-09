@@ -315,7 +315,7 @@ If you see most labels like ```breadcrumb.link_dashboard``` instead of ```Dashbo
 framework:
     # ...
     default_locale:  "%locale%"
-    translator: { fallback: %locale% }
+    translator: { fallback: "%locale%" }
 ```
 
 Don't forget to define and set ```%locale%``` parameter in ```parameters.yml``` or directly in ```config.yml``` under ```parameter:``` key
