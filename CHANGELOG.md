@@ -1,8 +1,7 @@
 # Change Log
 
-## [Unreleased](https://github.com/libre-informatique/EmailBundle/tree/HEAD)
-
-[Full Changelog](https://github.com/libre-informatique/EmailBundle/compare/0.4.2...HEAD)
+## [0.4.3](https://github.com/libre-informatique/EmailBundle/tree/0.4.3) (2017-06-13)
+[Full Changelog](https://github.com/libre-informatique/EmailBundle/compare/0.4.2...0.4.3)
 
 **Closed issues:**
 
@@ -10,6 +9,15 @@
 
 **Merged pull requests:**
 
+- DevKit updates for EmailBundle [\#20](https://github.com/libre-informatique/EmailBundle/pull/20) ([BlastCI](https://github.com/BlastCI))
+- Phpunit [\#19](https://github.com/libre-informatique/EmailBundle/pull/19) ([FanchTheSystem](https://github.com/FanchTheSystem))
+- add UnitTest Send.php [\#18](https://github.com/libre-informatique/EmailBundle/pull/18) ([erwanrolland](https://github.com/erwanrolland))
+- Correct call to getTestAddress\(\) and return an array [\#17](https://github.com/libre-informatique/EmailBundle/pull/17) ([erwanrolland](https://github.com/erwanrolland))
+- DevKit updates for EmailBundle [\#15](https://github.com/libre-informatique/EmailBundle/pull/15) ([BlastCI](https://github.com/BlastCI))
+- Phpunit [\#14](https://github.com/libre-informatique/EmailBundle/pull/14) ([FanchTheSystem](https://github.com/FanchTheSystem))
+- DevKit updates for EmailBundle [\#13](https://github.com/libre-informatique/EmailBundle/pull/13) ([BlastCI](https://github.com/BlastCI))
+- DevKit updates for EmailBundle [\#10](https://github.com/libre-informatique/EmailBundle/pull/10) ([BlastCI](https://github.com/BlastCI))
+- Add unit tests for Email and EmailLink [\#9](https://github.com/libre-informatique/EmailBundle/pull/9) ([quotidianus](https://github.com/quotidianus))
 - Annotations of methods corrected [\#7](https://github.com/libre-informatique/EmailBundle/pull/7) ([quotidianus](https://github.com/quotidianus))
 - Modified READ.md concerning the dependies of the bundle [\#5](https://github.com/libre-informatique/EmailBundle/pull/5) ([quotidianus](https://github.com/quotidianus))
 
