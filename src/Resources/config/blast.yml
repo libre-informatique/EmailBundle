@@ -61,8 +61,10 @@ parameters:
                         '':
                             field_from:
                                 type: text
+                                required: true
                             field_to:
                                 type: text
+                                required: true
                             field_subject:
                                 type: text
                                 required: false
