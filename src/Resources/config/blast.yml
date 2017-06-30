@@ -1,6 +1,5 @@
 parameters:
     blast:
-        configuration:
 ######  Email ##########
         Librinfo\EmailBundle\Entity\Email:
             Sonata\AdminBundle\Datagrid\ListMapper:
