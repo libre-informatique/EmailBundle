@@ -1,10 +1,12 @@
 <?php
 
 /*
- * Copyright (C) 2015-2016 Libre Informatique
+ * This file is part of the Blast Project package.
  *
- * This file is licenced under the GNU GPL v3.
- * For the full copyright and license information, please view the LICENSE
+ * Copyright (C) 2015-2017 Libre Informatique
+ *
+ * This file is licenced under the GNU LGPL v3.
+ * For the full copyright and license information, please view the LICENSE.md
  * file that was distributed with this source code.
  */
 
@@ -18,7 +20,7 @@ use Blast\BaseEntitiesBundle\Entity\Traits\Timestampable;
 use Blast\OuterExtensionBundle\Entity\Traits\OuterExtensible;
 
 /**
- * EmailTemplate
+ * EmailTemplate.
  */
 class EmailTemplate
 {
@@ -39,9 +41,8 @@ class EmailTemplate
      */
     private $content;
 
-
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -55,7 +56,7 @@ class EmailTemplate
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -65,7 +66,7 @@ class EmailTemplate
     }
 
     /**
-     * Set content
+     * Set content.
      *
      * @param string $content
      *
@@ -79,7 +80,7 @@ class EmailTemplate
     }
 
     /**
-     * Get content
+     * Get content.
      *
      * @return string
      */

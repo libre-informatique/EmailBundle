@@ -1,5 +1,15 @@
 <?php
 
+/*
+ * This file is part of the Blast Project package.
+ *
+ * Copyright (C) 2015-2017 Libre Informatique
+ *
+ * This file is licenced under the GNU LGPL v3.
+ * For the full copyright and license information, please view the LICENSE.md
+ * file that was distributed with this source code.
+ */
+
 namespace Librinfo\EmailBundle\Entity;
 
 use Librinfo\EmailBundle\Services\SwiftMailer\Spool\SpoolStatus;
@@ -31,7 +41,6 @@ abstract class Spoolable
      */
     public function getMessage()
     {
-
         return $this->message;
     }
 
@@ -40,7 +49,6 @@ abstract class Spoolable
      */
     public function getMessageId()
     {
-
         return $this->messageId;
     }
 
@@ -49,7 +57,6 @@ abstract class Spoolable
      */
     public function getStatus()
     {
-
         return $this->status;
     }
 
@@ -58,7 +65,6 @@ abstract class Spoolable
      */
     public function getEnvironment()
     {
-
         return $this->environment;
     }
 
@@ -67,7 +73,6 @@ abstract class Spoolable
      */
     public function setMessage($message)
     {
-
         $this->message = $message;
     }
 
@@ -76,7 +81,6 @@ abstract class Spoolable
      */
     public function setMessageId($messageId)
     {
-
         $this->messageId = $messageId;
     }
 
@@ -85,9 +89,7 @@ abstract class Spoolable
      */
     public function setStatus($status)
     {
-
-        if ($status == SpoolStatus::STATUS_COMPLETE)
-        {
+        if ($status == SpoolStatus::STATUS_COMPLETE) {
             $this->setSent(true);
         }
         $this->status = $status;
@@ -100,5 +102,4 @@ abstract class Spoolable
     {
         $this->environment = $environment;
     }
-
 }

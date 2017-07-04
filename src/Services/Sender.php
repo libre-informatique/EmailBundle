@@ -1,67 +1,67 @@
 <?php
 
+/*
+ * This file is part of the Blast Project package.
+ *
+ * Copyright (C) 2015-2017 Libre Informatique
+ *
+ * This file is licenced under the GNU LGPL v3.
+ * For the full copyright and license information, please view the LICENSE.md
+ * file that was distributed with this source code.
+ */
+
 namespace Librinfo\EmailBundle\Services;
 
 use Doctrine\ORM\EntityManager;
-use Librinfo\EmailBundle\Services\InlineAttachments;
-use Librinfo\EmailBundle\Services\Tracking;
 
 class Sender
 {
     /**
-     *
      * @var EntityManager
      */
     protected $manager;
-    
+
     /**
-     *
      * @var Tracking
      */
     protected $tracker;
-    
+
     /**
-     *
-     * @var InlineAttachments $inlineAttachmentsHandler
+     * @var InlineAttachments
      */
     protected $inlineAttachmentsHandler;
-    
+
     /**
-     *
-     * @var Swift_Mailer $directMailer
+     * @var Swift_Mailer
      */
     protected $directMailer;
-    
+
     /**
-     *
-     * @var Swift_Mailer $spoolMailer
+     * @var Swift_Mailer
      */
     protected $spoolMailer;
 
     /**
-     *
-     * @var Email $email
+     * @var Email
      */
     protected $email;
 
     /**
-     *
-     * @var array $attachments
+     * @var array
      */
     protected $attachments;
 
     /**
-     *
-     * @var boolean $needsSpool Wheter the email has one or more recipients
+     * @var bool Wheter the email has one or more recipients
      */
     protected $needsSpool;
-    
+
     /**
-     * @param EntityManager $manager
-     * @param Tracking $tracker
+     * @param EntityManager     $manager
+     * @param Tracking          $tracker
      * @param InlineAttachments $inlineAttachmentsHandler
-     * @param Swift_Mailer $directMailer
-     * @param Swift_Mailer $spoolMailer
+     * @param Swift_Mailer      $directMailer
+     * @param Swift_Mailer      $spoolMailer
      */
     public function __construct(EntityManager $manager, $tracker, $inlineAttachmentsHandler, $directMailer, $spoolMailer)
     {
@@ -71,12 +71,13 @@ class Sender
         $this->directMailer = $directMailer;
         $this->spoolMailer = $spoolMailer;
     }
-    
+
     /**
-     * Sends an email
+     * Sends an email.
      *
-     * @param Email $email  The email to send
-     * @return int          Number of successfully sent emails
+     * @param Email $email The email to send
+     *
+     * @return int Number of successfully sent emails
      */
     public function send($email)
     {
@@ -84,12 +85,13 @@ class Sender
         $this->attachments = $email->getAttachments();
         // @TODO : getFieldTo() should return array (do the explode in this getter would be better)
         $addresses = explode(';', $this->email->getFieldTo());
-        
+
         $this->needsSpool = count($addresses) > 1;
-        
+
         if ($this->email->getIsTest()) {
             // @TODO : getTestAddress() should return array (do the explode in this getter would be better)
             $testAddressToArray = explode(';', $this->email->getTestAddress());
+
             return $this->directSend($testAddressToArray);
         }
         if ($this->needsSpool) {
@@ -100,12 +102,12 @@ class Sender
     }
 
     /**
-     * Sends the mail directly
+     * Sends the mail directly.
      *
-     * @param array $to                The To addresses
-     * @param array $cc                The Cc addresses (optional)
-     * @param array $bcc               The Bcc addresses (optional)
-     * @param array $failedRecipients  An array of failures by-reference (optional)
+     * @param array $to               The To addresses
+     * @param array $cc               The Cc addresses (optional)
+     * @param array $bcc              The Bcc addresses (optional)
+     * @param array $failedRecipients An array of failures by-reference (optional)
      *
      * @return int The number of successful recipients. Can be 0 which indicates failure
      */
@@ -120,7 +122,7 @@ class Sender
     }
 
     /**
-     * Spools the email
+     * Spools the email.
      *
      * @param array $addresses
      */
@@ -131,15 +133,16 @@ class Sender
         $this->updateEmailEntity($message);
 
         $sent = $this->spoolMailer->send($message);
-        
+
         return $sent;
     }
 
     /**
-     * Creates Swift_Message from Email
+     * Creates Swift_Message from Email.
      *
-     * @param array $to   The To addresses
+     * @param array  $to      The To addresses
      * @param string $message
+     *
      * @return Swift_Message
      */
     protected function setupSwiftMessage($to, $message = null)
@@ -149,18 +152,19 @@ class Sender
         if ($message == null) {
             $message = \Swift_Message::newInstance();
         }
-        
-        if(!is_array($to))
+
+        if (!is_array($to)) {
             $to = [$to];
-        
-        foreach ( $to as $key => $address ) {
+        }
+
+        foreach ($to as $key => $address) {
             $to[$key] = trim($address);
         }
-        
+
         // do not modify yet email content if it goes to spool
         if (!$this->needsSpool) {
             $content = $this->inlineAttachmentsHandler->handle($content, $message);
-            
+
             if ($this->email->getTracking()) {
                 try {
                     $content = $this->tracker->addTracking($content, $to[0], $this->email->getId());
@@ -169,19 +173,18 @@ class Sender
                 }
             }
         }
-        
+
         $message->setSubject($this->email->getFieldSubject())
                 ->setFrom(trim($this->email->getFieldFrom()))
                 ->setTo($to)
                 ->setBody($content, 'text/html')
                 ->addPart($this->email->getTextContent(), 'text/plain')
         ;
-        
-        
+
         if (!empty($cc = $this->email->getFieldCc())) {
             $message->setCc($cc);
         }
-        
+
         if (!empty($bcc = $this->email->getFieldBcc())) {
             $message->setBcc($bcc);
         }
@@ -192,7 +195,8 @@ class Sender
     }
 
     /**
-     * Adds attachments to the Swift_Message
+     * Adds attachments to the Swift_Message.
+     *
      * @param Swift_Message $message
      */
     protected function addAttachments($message)
@@ -210,7 +214,6 @@ class Sender
     }
 
     /**
-     *
      * @param Swift_Message $message
      */
     protected function updateEmailEntity($message)

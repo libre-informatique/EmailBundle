@@ -1,15 +1,24 @@
 <?php
 
+/*
+ * This file is part of the Blast Project package.
+ *
+ * Copyright (C) 2015-2017 Libre Informatique
+ *
+ * This file is licenced under the GNU LGPL v3.
+ * For the full copyright and license information, please view the LICENSE.md
+ * file that was distributed with this source code.
+ */
+
 namespace Librinfo\EmailBundle\Entity;
 
 use Blast\BaseEntitiesBundle\Entity\Traits\BaseEntity;
 
 /**
- * EmailLink
+ * EmailLink.
  */
 class EmailLink
 {
-
     use BaseEntity;
 
     /**
@@ -33,7 +42,7 @@ class EmailLink
     private $email;
 
     /**
-     * Set destination
+     * Set destination.
      *
      * @param string $destination
      *
@@ -47,7 +56,7 @@ class EmailLink
     }
 
     /**
-     * Get destination
+     * Get destination.
      *
      * @return string
      */
@@ -57,7 +66,7 @@ class EmailLink
     }
 
     /**
-     * Set address
+     * Set address.
      *
      * @param string $address
      *
@@ -71,7 +80,7 @@ class EmailLink
     }
 
     /**
-     * Get address
+     * Get address.
      *
      * @return string
      */
@@ -81,7 +90,7 @@ class EmailLink
     }
 
     /**
-     * Set date
+     * Set date.
      *
      * @param \DateTime $date
      *
@@ -95,7 +104,7 @@ class EmailLink
     }
 
     /**
-     * Get date
+     * Get date.
      *
      * @return \DateTime
      */
@@ -105,7 +114,7 @@ class EmailLink
     }
 
     /**
-     * Set email
+     * Set email.
      *
      * @param \Librinfo\EmailBundle\Entity\Email $email
      *
@@ -119,7 +128,7 @@ class EmailLink
     }
 
     /**
-     * Get email
+     * Get email.
      *
      * @return \Librinfo\EmailBundle\Entity\Email
      */

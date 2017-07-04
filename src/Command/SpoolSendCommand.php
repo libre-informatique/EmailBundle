@@ -1,5 +1,15 @@
 <?php
 
+/*
+ * This file is part of the Blast Project package.
+ *
+ * Copyright (C) 2015-2017 Libre Informatique
+ *
+ * This file is licenced under the GNU LGPL v3.
+ * For the full copyright and license information, please view the LICENSE.md
+ * file that was distributed with this source code.
+ */
+
 namespace Librinfo\EmailBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
@@ -12,7 +22,6 @@ use Symfony\Component\Console\Input\InputOption;
  */
 class SpoolSendCommand extends ContainerAwareCommand
 {
-
     /**
      * @see Command
      */
@@ -35,51 +44,43 @@ EOF
     }
 
     /**
-     * 
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $name = $input->getOption('mailer');
-        if ($name)
-        {
+        if ($name) {
             $this->processMailer($name, $input, $output);
-        } else
-        {
+        } else {
             $mailers = array_keys($this->getContainer()->getParameter('swiftmailer.mailers'));
-            foreach ($mailers as $name)
-            {
+            foreach ($mailers as $name) {
                 $this->processMailer($name, $input, $output);
             }
         }
     }
 
     /**
-     * 
-     * @param string $name
-     * @param InputInterface $input
+     * @param string          $name
+     * @param InputInterface  $input
      * @param OutputInterface $output
+     *
      * @throws \InvalidArgumentException
      */
     private function processMailer($name, $input, $output)
     {
-        if (!$this->getContainer()->has(sprintf('swiftmailer.mailer.%s', $name)))
-        {
+        if (!$this->getContainer()->has(sprintf('swiftmailer.mailer.%s', $name))) {
             throw new \InvalidArgumentException(sprintf('The mailer "%s" does not exist.', $name));
         }
         $output->write(sprintf('<info>[%s]</info> Processing <info>%s</info> mailer... ', date('Y-m-d H:i:s'), $name));
-        if ($this->getContainer()->getParameter(sprintf('swiftmailer.mailer.%s.spool.enabled', $name)))
-        {
+        if ($this->getContainer()->getParameter(sprintf('swiftmailer.mailer.%s.spool.enabled', $name))) {
             $mailer = $this->getContainer()->get(sprintf('swiftmailer.mailer.%s', $name));
             $transport = $mailer->getTransport();
-            if ($transport instanceof \Swift_Transport_SpoolTransport)
-            {
+            if ($transport instanceof \Swift_Transport_SpoolTransport) {
                 $spool = $transport->getSpool();
 
                 //add command options
-                if ($spool instanceof \Swift_ConfigurableSpool)
-                {
+                if ($spool instanceof \Swift_ConfigurableSpool) {
                     $spool->setMessageLimit($input->getOption('message-limit'));
                     $spool->setTimeLimit($input->getOption('time-limit'));
                     $spool->setPauseTime($input->getOption(('pause-time')));
@@ -88,10 +89,8 @@ EOF
                 $sent = $spool->flushQueue($this->getContainer()->get(sprintf('swiftmailer.mailer.%s.transport.real', $name)));
                 $output->writeln(sprintf('<comment>%d</comment> emails sent', $sent));
             }
-        } else
-        {
+        } else {
             $output->writeln('No email to send as the spool is disabled.');
         }
     }
-
 }

@@ -1,15 +1,24 @@
 <?php
 
+/*
+ * This file is part of the Blast Project package.
+ *
+ * Copyright (C) 2015-2017 Libre Informatique
+ *
+ * This file is licenced under the GNU LGPL v3.
+ * For the full copyright and license information, please view the LICENSE.md
+ * file that was distributed with this source code.
+ */
+
 namespace Librinfo\EmailBundle\Services\SwiftMailer\Spool;
 
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
-use Librinfo\EmailBundle\Services\SwiftMailer\Spool\SpoolStatus;
 use Librinfo\EmailBundle\Services\Tracking;
 use Librinfo\EmailBundle\Services\InlineAttachments;
 
 /**
- * Class DbSpool
+ * Class DbSpool.
  */
 class DbSpool extends \Swift_ConfigurableSpool
 {
@@ -32,17 +41,16 @@ class DbSpool extends \Swift_ConfigurableSpool
      * @var EntityRepository
      */
     protected $repository;
-    
+
     /**
-     *
-     * @var integer
+     * @var int
      */
     protected $pauseTime;
 
     /**
-     * @param Router $router
+     * @param Router        $router
      * @param EntityManager $manager
-     * @param string $environment
+     * @param string        $environment
      */
     public function __construct(Router $router, EntityManager $manager, $environment)
     {
@@ -57,7 +65,6 @@ class DbSpool extends \Swift_ConfigurableSpool
      */
     public function start()
     {
-        
     }
 
     /**
@@ -65,13 +72,12 @@ class DbSpool extends \Swift_ConfigurableSpool
      */
     public function stop()
     {
-        
     }
 
     /**
      * Tests if this Spool mechanism has started.
      *
-     * @return boolean
+     * @return bool
      */
     public function isStarted()
     {
@@ -82,12 +88,14 @@ class DbSpool extends \Swift_ConfigurableSpool
      * Queues a message.
      *
      * @param \Swift_Mime_Message $message The message to store
-     * @return boolean Whether the operation has succeeded
+     *
+     * @return bool Whether the operation has succeeded
+     *
      * @throws \Swift_IoException if the persist fails
      */
     public function queueMessage(\Swift_Mime_Message $message)
     {
-        $email = $this->repository->findOneBy(array("messageId" => $message->getId()));
+        $email = $this->repository->findOneBy(array('messageId' => $message->getId()));
         $email->setMessage(base64_encode(serialize($message)));
         $email->setStatus(SpoolStatus::STATUS_READY);
         $email->setEnvironment($this->environment);
@@ -100,23 +108,21 @@ class DbSpool extends \Swift_ConfigurableSpool
      * Sends messages using the given transport instance.
      *
      * @param \Swift_Transport $transport         A transport instance
-     * @param string[]        &$failedRecipients An array of failures by-reference
+     * @param string[]         &$failedRecipients An array of failures by-reference
      *
      * @return int The number of sent emails
      */
     public function flushQueue(\Swift_Transport $transport, &$failedRecipients = null)
     {
-        if (!$transport->isStarted())
-        {
+        if (!$transport->isStarted()) {
             $transport->start();
         }
 
         $emails = $this->repository->findBy(
-                array("status" => SpoolStatus::STATUS_READY, "environment" => $this->environment), null
+                array('status' => SpoolStatus::STATUS_READY, 'environment' => $this->environment), null
         );
 
-        if (!count($emails))
-        {
+        if (!count($emails)) {
             return 0;
         }
 
@@ -124,8 +130,7 @@ class DbSpool extends \Swift_ConfigurableSpool
         $count = 0;
         $time = time();
 
-        foreach ($emails as $email)
-        {
+        foreach ($emails as $email) {
             $email->setStatus(SpoolStatus::STATUS_PROCESSING);
 
             $this->updateEmail($email);
@@ -134,22 +139,20 @@ class DbSpool extends \Swift_ConfigurableSpool
 
             $addresses = explode(';', $email->getFieldTo());
 
-            foreach ($addresses as $address)
-            {
+            foreach ($addresses as $address) {
                 $message->setTo(trim($address));
                 $content = $email->getContent();
-                
-                if ($email->getTracking())
-                {
+
+                if ($email->getTracking()) {
                     $tracker = new Tracking($this->router);
                     $content = $tracker->addTracking($content, $address, $email->getId());
                 }
-                
+
                 $attachmentsHandler = new InlineAttachments();
                 $content = $attachmentsHandler->handle($content, $message);
 
                 $message->setBody($content);
-                
+
                 try {
                     $count += $transport->send($message, $failedRecipients);
                     sleep($this->pauseTime);
@@ -163,11 +166,11 @@ class DbSpool extends \Swift_ConfigurableSpool
 
             $this->updateEmail($email);
 
-            if ($this->getTimeLimit() && (time() - $time) >= $this->getTimeLimit())
-            {
+            if ($this->getTimeLimit() && (time() - $time) >= $this->getTimeLimit()) {
                 break;
             }
         }
+
         return $count;
     }
 
@@ -181,5 +184,4 @@ class DbSpool extends \Swift_ConfigurableSpool
     {
         $this->pauseTime = $pauseTime;
     }
-
 }

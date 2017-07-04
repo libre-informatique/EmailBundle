@@ -1,5 +1,15 @@
 <?php
 
+/*
+ * This file is part of the Blast Project package.
+ *
+ * Copyright (C) 2015-2017 Libre Informatique
+ *
+ * This file is licenced under the GNU LGPL v3.
+ * For the full copyright and license information, please view the LICENSE.md
+ * file that was distributed with this source code.
+ */
+
 namespace Librinfo\EmailBundle\Block;
 
 use Doctrine\ORM\EntityManager;
@@ -19,7 +29,8 @@ class EmailsListBlock extends TextBlockService
     /**
      * @param EntityManager $manager
      */
-    public function setManager(EntityManager $manager) {
+    public function setManager(EntityManager $manager)
+    {
         $this->manager = $manager;
     }
 
@@ -55,25 +66,28 @@ class EmailsListBlock extends TextBlockService
 
     /**
      * @param object $targetEntity
-     * @param int $maxResults
+     * @param int    $maxResults
+     *
      * @return array
+     *
      * @throws \Exception
      */
     private function getEmails($targetEntity, $maxResults)
     {
-        if (!$targetEntity || !is_object($targetEntity))
+        if (!$targetEntity || !is_object($targetEntity)) {
             return [];
+        }
         $rc = new \ReflectionClass($targetEntity);
-        if (!$rc->hasProperty('emailMessages'))
+        if (!$rc->hasProperty('emailMessages')) {
             return [];
+        }
 
         $repo = $this->manager->getRepository($rc->getName());
         if (method_exists($repo, 'getEmailMessagesQueryBuilder')) {
             $qb = $repo->getEmailMessagesQueryBuilder($targetEntity->getId());
-        }
-        else {
+        } else {
             $repo = $this->manager->getRepository(Email::class);
-            $targets = strtolower($rc->getShortName()) . 's'; // ex. contacts
+            $targets = strtolower($rc->getShortName()).'s'; // ex. contacts
             $qb = $repo->createQueryBuilder('e')
                 ->leftJoin('e.'.$targets, 't')
                 ->where('t.id = :targetid')
@@ -85,7 +99,4 @@ class EmailsListBlock extends TextBlockService
 
         return $qb->getQuery()->getResult();
     }
-
-
 }
-

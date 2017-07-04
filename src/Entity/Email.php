@@ -1,10 +1,12 @@
 <?php
 
 /*
- * Copyright (C) 2015-2016 Libre Informatique
+ * This file is part of the Blast Project package.
  *
- * This file is licenced under the GNU GPL v3.
- * For the full copyright and license information, please view the LICENSE
+ * Copyright (C) 2015-2017 Libre Informatique
+ *
+ * This file is licenced under the GNU LGPL v3.
+ * For the full copyright and license information, please view the LICENSE.md
  * file that was distributed with this source code.
  */
 
@@ -20,7 +22,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Librinfo\MediaBundle\Entity\File;
 
 /**
- * Email
+ * Email.
  */
 class Email extends Spoolable
 {
@@ -110,7 +112,7 @@ class Email extends Spoolable
      * @var \Doctrine\Common\Collections\Collection
      */
     private $receipts;
-    
+
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
@@ -124,7 +126,7 @@ class Email extends Spoolable
     }
 
     /**
-     * constructor
+     * constructor.
      */
     public function __construct()
     {
@@ -140,14 +142,14 @@ class Email extends Spoolable
         $this->id = null;
         $this->initCollections();
     }
-    
+
     public function __toString()
     {
         return $this->getFieldSubject();
     }
 
     /**
-     * Set fieldFrom
+     * Set fieldFrom.
      *
      * @param string $fieldFrom
      *
@@ -161,7 +163,7 @@ class Email extends Spoolable
     }
 
     /**
-     * Get fieldFrom
+     * Get fieldFrom.
      *
      * @return string
      */
@@ -171,7 +173,7 @@ class Email extends Spoolable
     }
 
     /**
-     * Set fieldTo
+     * Set fieldTo.
      *
      * @param string $fieldTo
      *
@@ -185,7 +187,7 @@ class Email extends Spoolable
     }
 
     /**
-     * Get fieldTo
+     * Get fieldTo.
      *
      * @return string
      */
@@ -195,7 +197,7 @@ class Email extends Spoolable
     }
 
     /**
-     * Set fieldCc
+     * Set fieldCc.
      *
      * @param string $fieldCc
      *
@@ -209,7 +211,7 @@ class Email extends Spoolable
     }
 
     /**
-     * Get fieldCc
+     * Get fieldCc.
      *
      * @return string
      */
@@ -219,7 +221,7 @@ class Email extends Spoolable
     }
 
     /**
-     * Set fieldBcc
+     * Set fieldBcc.
      *
      * @param string $fieldBcc
      *
@@ -233,7 +235,7 @@ class Email extends Spoolable
     }
 
     /**
-     * Get fieldBcc
+     * Get fieldBcc.
      *
      * @return string
      */
@@ -243,7 +245,7 @@ class Email extends Spoolable
     }
 
     /**
-     * Set fieldSubject
+     * Set fieldSubject.
      *
      * @param string $fieldSubject
      *
@@ -257,7 +259,7 @@ class Email extends Spoolable
     }
 
     /**
-     * Get fieldSubject
+     * Get fieldSubject.
      *
      * @return string
      */
@@ -267,7 +269,7 @@ class Email extends Spoolable
     }
 
     /**
-     * Set content
+     * Set content.
      *
      * @param string $content
      *
@@ -281,7 +283,7 @@ class Email extends Spoolable
     }
 
     /**
-     * Get content
+     * Get content.
      *
      * @return string
      */
@@ -291,7 +293,7 @@ class Email extends Spoolable
     }
 
     /**
-     * Set textContent
+     * Set textContent.
      *
      * @param string $textContent
      *
@@ -305,7 +307,7 @@ class Email extends Spoolable
     }
 
     /**
-     * Get textContent
+     * Get textContent.
      *
      * @return string
      */
@@ -315,7 +317,7 @@ class Email extends Spoolable
     }
 
     /**
-     * Set sent
+     * Set sent.
      *
      * @param bool $sent
      *
@@ -329,7 +331,7 @@ class Email extends Spoolable
     }
 
     /**
-     * Get sent
+     * Get sent.
      *
      * @return bool
      */
@@ -339,7 +341,7 @@ class Email extends Spoolable
     }
 
     /**
-     * Add attachment
+     * Add attachment.
      *
      * @param \Librinfo\MediaBundle\Entity\File $attachment
      *
@@ -351,32 +353,31 @@ class Email extends Spoolable
 
         return $this;
     }
-    
+
     public function addLibrinfoFile(File $file)
     {
         return $this->addAttachment($file);
     }
 
     /**
-     * Remove attachment
+     * Remove attachment.
      *
      * @param \Librinfo\MediaBundle\Entity\File $attachment
      *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     * @return bool tRUE if this collection contained the specified element, FALSE otherwise
      */
     public function removeAttachment(File $attachment)
     {
-
         return $this->attachments->removeElement($attachment);
     }
-    
+
     public function removeLibrinfoFile(File $file)
     {
         return $this->removeAttachment($file);
     }
-            
+
     /**
-     * Get attachments
+     * Get attachments.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -384,7 +385,7 @@ class Email extends Spoolable
     {
         return $this->attachments;
     }
-    
+
     public function getLibrinfoFiles()
     {
         return $this->getAttachments();
@@ -392,7 +393,7 @@ class Email extends Spoolable
 
     /**
      * Set attachments
-     * Used for duplicating purposes
+     * Used for duplicating purposes.
      */
     public function setAttachments($attachments)
     {
@@ -414,7 +415,7 @@ class Email extends Spoolable
         return $this->testAddress;
     }
 
-    public function setTestAddress($testAddress = NULL)
+    public function setTestAddress($testAddress = null)
     {
         $this->testAddress = $testAddress;
     }
@@ -424,12 +425,12 @@ class Email extends Spoolable
         return $this->template;
     }
 
-    public function setTemplate($template = NULL)
+    public function setTemplate($template = null)
     {
         $this->template = $template;
     }
 
-     public function getIsTemplate()
+    public function getIsTemplate()
     {
         return $this->isTemplate;
     }
@@ -450,7 +451,7 @@ class Email extends Spoolable
     }
 
     /**
-     * Set tracking
+     * Set tracking.
      *
      * @param bool $tracking
      *
@@ -464,7 +465,7 @@ class Email extends Spoolable
     }
 
     /**
-     * Get tracking
+     * Get tracking.
      *
      * @return bool
      */
@@ -474,7 +475,7 @@ class Email extends Spoolable
     }
 
     /**
-     * Add receipt
+     * Add receipt.
      *
      * @param \Librinfo\EmailBundle\Entity\EmailReceipt $receipt
      *
@@ -488,11 +489,11 @@ class Email extends Spoolable
     }
 
     /**
-     * Remove receipt
+     * Remove receipt.
      *
      * @param \Librinfo\EmailBundle\Entity\EmailReceipt $receipt
      *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise
+     * @return bool TRUE if this collection contained the specified element, FALSE otherwise
      */
     public function removeReceipt(\Librinfo\EmailBundle\Entity\EmailReceipt $receipt)
     {
@@ -500,7 +501,7 @@ class Email extends Spoolable
     }
 
     /**
-     * Get receipts
+     * Get receipts.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -510,7 +511,7 @@ class Email extends Spoolable
     }
 
     /**
-     * Add link
+     * Add link.
      *
      * @param \Librinfo\EmailBundle\Entity\EmailLink $link
      *
@@ -524,11 +525,11 @@ class Email extends Spoolable
     }
 
     /**
-     * Remove link
+     * Remove link.
      *
      * @param \Librinfo\EmailBundle\Entity\EmailLink $link
      *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise
+     * @return bool TRUE if this collection contained the specified element, FALSE otherwise
      */
     public function removeLink(\Librinfo\EmailBundle\Entity\EmailLink $link)
     {
@@ -536,7 +537,7 @@ class Email extends Spoolable
     }
 
     /**
-     * Get links
+     * Get links.
      *
      * @return \Doctrine\Common\Collections\Collection
      */

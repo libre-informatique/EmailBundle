@@ -1,5 +1,15 @@
 <?php
 
+/*
+ * This file is part of the Blast Project package.
+ *
+ * Copyright (C) 2015-2017 Libre Informatique
+ *
+ * This file is licenced under the GNU LGPL v3.
+ * For the full copyright and license information, please view the LICENSE.md
+ * file that was distributed with this source code.
+ */
+
 namespace Librinfo\EmailBundle\Controller;
 
 use Librinfo\MediaBundle\Controller\CRUDController as BaseCRUDController;
@@ -11,7 +21,7 @@ use Symfony\Component\HttpFoundation\Response;
 class CRUDController extends BaseCRUDController
 {
     /**
-     * Sends the email and redirects to list view keeping filter parameters
+     * Sends the email and redirects to list view keeping filter parameters.
      *
      * @return RedirectResponse
      */
@@ -21,62 +31,65 @@ class CRUDController extends BaseCRUDController
         $email = $this->admin->getObject($id);
 
         //prevent resending of an email
-        if ( $email->getSent() )
-        {
-            $this->addFlash('sonata_flash_error', "Message " . $id . " déjà envoyé");
+        if ($email->getSent()) {
+            $this->addFlash('sonata_flash_error', 'Message '.$id.' déjà envoyé');
 
-            if( $this->isXmlHttpRequest() )
+            if ($this->isXmlHttpRequest()) {
                 return new JsonResponse(array(
                     'status' => 'NOK',
                     'sent' => true,
                     'error' => 'librinfo_email.error.email_already_sent',
                 ));
+            }
 
             return new RedirectResponse($this->admin->generateUrl('list', $this->admin->getFilterParameters()));
         }
 
         $sender = $this->get('librinfo_email.sender');
         $error = false;
-        
+
         try {
             $nbSent = $sender->send($email);
-        } catch ( \Exception $exc ) {
-            
+        } catch (\Exception $exc) {
             $error = $exc->getMessage();
-            
-            if($this->isXmlHttpRequest())
+
+            if ($this->isXmlHttpRequest()) {
                 return new JsonResponse(array(
                     'status' => 'NOK',
                     'sent' => false,
                     'error' => $error,
                 ));
+            }
         }
 
-        if($error)
+        if ($error) {
             $this->addFlash(
-                'sonata_flash_error', 
-                $this->get('translator')->trans('librinfo_email.flash.message_not_sent') . ': ' . $error
+                'sonata_flash_error',
+                $this->get('translator')->trans('librinfo_email.flash.message_not_sent').': '.$error
             );
-        else
+        } else {
             $this->addFlash(
-                'sonata_flash_success', 
+                'sonata_flash_success',
                 $this->get('translator')->trans('librinfo_email.flash.message_sent')
             );
+        }
 
-        if( $this->isXmlHttpRequest() )
+        if ($this->isXmlHttpRequest()) {
             return new JsonResponse(array(
                 'status' => 'OK',
                 'sent' => true,
             ));
+        }
 
         return new RedirectResponse($this->admin->generateUrl('list', $this->admin->getFilterParameters()));
     }
 
     /**
-     * Adds tracking data to show view
+     * Adds tracking data to show view.
      *
      * @param Request $request
-     * @param Email $object
+     * @param Email   $object
+     *
      * @return Response
      */
     protected function preShow(Request $request, $object)
@@ -84,24 +97,26 @@ class CRUDController extends BaseCRUDController
         $twigArray = [
             'action' => 'show',
             'object' => $object,
-            'elements' => $this->admin->getShow()
+            'elements' => $this->admin->getShow(),
         ];
 
         $this->admin->setSubject($object);
 
-        if ( $object->getTracking() )
+        if ($object->getTracking()) {
             $twigArray['stats'] = $this->get('librinfo_email.stats')->getStats($object);
-        
+        }
+
         return $this->render($this->admin->getTemplate('show'), $twigArray, null);
     }
 
     /**
-     * Overrides SonataAdminBundle CRUDController
+     * Overrides SonataAdminBundle CRUDController.
      *
      * @param Email $object
+     *
      * @return Response
      */
-    public function createAction($object = Null)
+    public function createAction($object = null)
     {
         $request = $this->getRequest();
         $this->manager = $this->getDoctrine()->getManager();
@@ -112,8 +127,7 @@ class CRUDController extends BaseCRUDController
 
         $class = new \ReflectionClass($this->admin->hasActiveSubClass() ? $this->admin->getActiveSubClass() : $this->admin->getClass());
 
-        if ( $class->isAbstract() )
-        {
+        if ($class->isAbstract()) {
             return $this->render(
                             'SonataAdminBundle:CRUD:select_subclass.html.twig', array(
                         'base_template' => $this->getBaseTemplate(),
@@ -126,8 +140,7 @@ class CRUDController extends BaseCRUDController
         $object = $object ? $object : $this->admin->getNewInstance();
 
         $preResponse = $this->preCreate($request, $object);
-        if ($preResponse !== null)
-        {
+        if ($preResponse !== null) {
             return $preResponse;
         }
 
@@ -140,18 +153,15 @@ class CRUDController extends BaseCRUDController
 
         $this->handleFiles($object, $request->get('file_ids'));
 
-        if ($form->isSubmitted())
-        {
+        if ($form->isSubmitted()) {
             //TODO: remove this check for 3.0
-            if (method_exists($this->admin, 'preValidate'))
-            {
+            if (method_exists($this->admin, 'preValidate')) {
                 $this->admin->preValidate($object);
             }
             $isFormValid = $form->isValid();
 
             // persist if the form was valid and if in preview mode the preview was approved
-            if ($isFormValid && (!$this->isInPreviewMode($request) || $this->isPreviewApproved($request)))
-            {
+            if ($isFormValid && (!$this->isInPreviewMode($request) || $this->isPreviewApproved($request))) {
                 $this->admin->checkAccess('create', $object);
 
                 try {
@@ -164,8 +174,7 @@ class CRUDController extends BaseCRUDController
 
                     $this->handleTemplate($object);
 
-                    if ($this->isXmlHttpRequest())
-                    {
+                    if ($this->isXmlHttpRequest()) {
                         return $this->renderJson(array(
                                     'result' => 'ok',
                                     'objectId' => $this->admin->getNormalizedIdentifier($object),
@@ -188,18 +197,15 @@ class CRUDController extends BaseCRUDController
             }
 
             // show an error message if the form failed validation
-            if (!$isFormValid)
-            {
-                if (!$this->isXmlHttpRequest())
-                {
+            if (!$isFormValid) {
+                if (!$this->isXmlHttpRequest()) {
                     $this->addFlash(
                             'sonata_flash_error', $this->admin->trans(
                                     'flash_create_error', array('%name%' => $this->escapeHtml($this->admin->toString($object))), 'SonataAdminBundle'
                             )
                     );
                 }
-            } elseif ($this->isPreviewRequested())
-            {
+            } elseif ($this->isPreviewRequested()) {
                 // pick the preview template if the form was valid and preview was requested
                 $templateKey = 'preview';
                 $this->admin->getShow();
@@ -223,10 +229,12 @@ class CRUDController extends BaseCRUDController
     }
 
     /**
-     * Overrides SonataAdminBundle CRUDController
+     * Overrides SonataAdminBundle CRUDController.
      *
      * @param type $id
+     *
      * @return type
+     *
      * @throws type
      */
     public function editAction($id = null)
@@ -239,23 +247,21 @@ class CRUDController extends BaseCRUDController
         $id = $request->get($this->admin->getIdParameter());
         $object = $this->admin->getObject($id);
 
-        if ( !$object )
-        {
+        if (!$object) {
             throw $this->createNotFoundException(sprintf('unable to find the object with id : %s', $id));
         }
 
         $this->admin->checkAccess('edit', $object);
 
         $preResponse = $this->preEdit($request, $object);
-        if ($preResponse !== null)
-        {
+        if ($preResponse !== null) {
             return $preResponse;
         }
 
         $this->admin->setSubject($object);
 
-        /** 
-         * @var $form Form 
+        /**
+         * @var Form
          */
         $form = $this->admin->getForm();
         $form->setData($object);
@@ -263,18 +269,15 @@ class CRUDController extends BaseCRUDController
 
         $this->handleFiles($object, $request->get('file_ids'));
 
-        if ( $form->isSubmitted() )
-        {
+        if ($form->isSubmitted()) {
             //TODO: remove this check for 3.0
-            if (method_exists($this->admin, 'preValidate'))
-            {
+            if (method_exists($this->admin, 'preValidate')) {
                 $this->admin->preValidate($object);
             }
             $isFormValid = $form->isValid();
 
             // persist if the form was valid and if in preview mode the preview was approved
-            if ( $isFormValid && (!$this->isInPreviewMode() || $this->isPreviewApproved()) )
-            {
+            if ($isFormValid && (!$this->isInPreviewMode() || $this->isPreviewApproved())) {
                 try {
                     $object = $this->admin->update($object);
                     /*                     * ********************************************************************************************** */
@@ -282,8 +285,7 @@ class CRUDController extends BaseCRUDController
 
                     $this->handleTemplate($object);
                     /*                     * **************************************************************************************** */
-                    if ($this->isXmlHttpRequest())
-                    {
+                    if ($this->isXmlHttpRequest()) {
                         return $this->renderJson(array(
                                     'result' => 'ok',
                                     'objectId' => $this->admin->getNormalizedIdentifier($object),
@@ -306,25 +308,22 @@ class CRUDController extends BaseCRUDController
                 } catch (LockException $e) {
                     $this->addFlash('sonata_flash_error', $this->admin->trans('flash_lock_error', array(
                                 '%name%' => $this->escapeHtml($this->admin->toString($object)),
-                                '%link_start%' => '<a href="' . $this->admin->generateObjectUrl('edit', $object) . '">',
+                                '%link_start%' => '<a href="'.$this->admin->generateObjectUrl('edit', $object).'">',
                                 '%link_end%' => '</a>',
                                     ), 'SonataAdminBundle'));
                 }
             }
 
             // show an error message if the form failed validation
-            if (!$isFormValid)
-            {
-                if (!$this->isXmlHttpRequest())
-                {
+            if (!$isFormValid) {
+                if (!$this->isXmlHttpRequest()) {
                     $this->addFlash(
                             'sonata_flash_error', $this->admin->trans(
                                     'flash_edit_error', array('%name%' => $this->escapeHtml($this->admin->toString($object))), 'SonataAdminBundle'
                             )
                     );
                 }
-            } elseif ($this->isPreviewRequested())
-            {
+            } elseif ($this->isPreviewRequested()) {
                 // enable the preview template if the form was valid and preview was requested
                 $templateKey = 'preview';
                 $this->admin->getShow();
@@ -344,25 +343,25 @@ class CRUDController extends BaseCRUDController
     }
 
     /**
-     * Handles sending of the test Email
+     * Handles sending of the test Email.
      *
      * @param Email $email
      */
     protected function handleTest($email)
     {
-        if ( $email->getIsTest() && $email->getTestAddress() )
+        if ($email->getIsTest() && $email->getTestAddress()) {
             $this->get('librinfo_email.sender')->send($email);
+        }
     }
 
     /**
-     * Handle creation of the template from email content
+     * Handle creation of the template from email content.
      *
      * @param Email $email
      */
     protected function handleTemplate($email)
     {
-        if ( $email->getIsTemplate() && $email->getNewTemplateName() )
-        {
+        if ($email->getIsTemplate() && $email->getNewTemplateName()) {
             $template = new \Librinfo\EmailBundle\Entity\EmailTemplate();
             $template->setContent($email->getContent());
             $template->setName($email->getNewTemplateName());
@@ -382,7 +381,7 @@ class CRUDController extends BaseCRUDController
             return $preResponse;
         }
 
-        if ( $listMode = $request->get('_list_mode') ) {
+        if ($listMode = $request->get('_list_mode')) {
             $this->admin->setListMode($listMode);
         }
 
@@ -392,13 +391,12 @@ class CRUDController extends BaseCRUDController
         // set the theme for the current Admin Form
         $this->get('twig')->getExtension('form')->renderer->setTheme($formView, $this->admin->getFilterTheme());
 
-
         return $this->render(
             $this->admin->getTemplate('list'),
             array(
-                'action'     => 'list',
-                'form'       => $formView,
-                'datagrid'   => $datagrid,
+                'action' => 'list',
+                'form' => $formView,
+                'datagrid' => $datagrid,
                 'csrf_token' => $this->getCsrfToken('sonata.batch'),
             ),
             null,
@@ -420,18 +418,19 @@ class CRUDController extends BaseCRUDController
         $from_admin = $request->get('from_admin'); // admin code
         $from_id = $request->get('from_id');
 
-        if ( $from_admin !== null && $from_id !== null ) {
+        if ($from_admin !== null && $from_id !== null) {
             $admin = $this->get($from_admin);
             $from_object = $admin->getObject($from_id);
 
-            if ( $admin->isGranted('SHOW', $from_object) )
+            if ($admin->isGranted('SHOW', $from_object)) {
                 $url = $admin->generateObjectUrl('show', $from_object);
+            }
         }
 
-        if ( $url )
+        if ($url) {
             return new RedirectResponse($url);
+        }
 
         return parent::redirectTo($object);
     }
-
 }
