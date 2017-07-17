@@ -5,8 +5,8 @@
  *
  * Copyright (C) 2015-2017 Libre Informatique
  *
- * This file is licenced under the GNU GPL v3.
- * For the full copyright and license information, please view the LICENSE
+ * This file is licenced under the GNU LGPL v3.
+ * For the full copyright and license information, please view the LICENSE.md
  * file that was distributed with this source code.
  */
 
@@ -50,16 +50,16 @@ class AppKernel extends Kernel
 
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        $loader->load($this->getRootDir().'/config/config_'.$this->getEnvironment().'.yml');
+        $loader->load($this->getRootDir() . '/config/config_' . $this->getEnvironment() . '.yml');
     }
 
     public function getCacheDir()
     {
-        return sys_get_temp_dir().'/EmailBundle/cache/'.$this->getEnvironment();
+        return sys_get_temp_dir() . '/EmailBundle/cache/' . $this->getEnvironment();
     }
 
     public function getLogDir()
     {
-        return sys_get_temp_dir().'/EmailBundle/logs';
+        return sys_get_temp_dir() . '/EmailBundle/logs';
     }
 }
