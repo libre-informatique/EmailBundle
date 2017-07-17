@@ -7,6 +7,7 @@ services:
             - '@librinfo_email.inline_attachments'
             - '@swiftmailer.mailer.direct_mailer'
             - '@swiftmailer.mailer.spool_mailer'
+            - '@librinfo.email.address_manager'
 
     librinfo_email.tracking:
         class: Librinfo\EmailBundle\Services\Tracking
@@ -17,6 +18,9 @@ services:
 
     librinfo_email.inline_attachments:
         class: Librinfo\EmailBundle\Services\InlineAttachments
+
+    librinfo.email.address_manager:
+        class: Librinfo\EmailBundle\Services\AddressManager
 
 ### SwiftMailer database spool ###
     swiftmailer.mailer.spool_mailer.spool.db:

@@ -1,11 +1,11 @@
 <?php
 
 /*
- * This file is part of the Blast Project package.
+ * This file is part of the Lisem Project.
  *
  * Copyright (C) 2015-2017 Libre Informatique
  *
- * This file is licenced under the GNU LGPL v3.
+ * This file is licenced under the GNU GPL v3.
  * For the full copyright and license information, please view the LICENSE.md
  * file that was distributed with this source code.
  */
@@ -57,19 +57,26 @@ class Sender
     protected $needsSpool;
 
     /**
+     * @var AddressManager
+     */
+    protected $addressManager;
+
+    /**
      * @param EntityManager     $manager
      * @param Tracking          $tracker
      * @param InlineAttachments $inlineAttachmentsHandler
      * @param Swift_Mailer      $directMailer
      * @param Swift_Mailer      $spoolMailer
+     * @param AddressManager    $addressManager
      */
-    public function __construct(EntityManager $manager, $tracker, $inlineAttachmentsHandler, $directMailer, $spoolMailer)
+    public function __construct(EntityManager $manager, $tracker, $inlineAttachmentsHandler, $directMailer, $spoolMailer, $addressManager)
     {
         $this->manager = $manager;
         $this->tracker = $tracker;
         $this->inlineAttachmentsHandler = $inlineAttachmentsHandler;
         $this->directMailer = $directMailer;
         $this->spoolMailer = $spoolMailer;
+        $this->addressManager = $addressManager;
     }
 
     /**
@@ -83,7 +90,7 @@ class Sender
     {
         $this->email = $email;
         $this->attachments = $email->getAttachments();
-        $addresses = $this->email->getFieldToAsArray();
+        $addresses = $this->addressManager->manageAddresses($this->email);
 
         $this->needsSpool = count($addresses) > 1;
 
