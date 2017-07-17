@@ -32,7 +32,7 @@ class CRUDController extends BaseCRUDController
 
         //prevent resending of an email
         if ($email->getSent()) {
-            $this->addFlash('sonata_flash_error', 'Message '.$id.' déjà envoyé');
+            $this->addFlash('sonata_flash_error', 'Message ' . $id . ' déjà envoyé');
 
             if ($this->isXmlHttpRequest()) {
                 return new JsonResponse(array(
@@ -65,7 +65,7 @@ class CRUDController extends BaseCRUDController
         if ($error) {
             $this->addFlash(
                 'sonata_flash_error',
-                $this->get('translator')->trans('librinfo_email.flash.message_not_sent').': '.$error
+                $this->get('translator')->trans('librinfo_email.flash.message_not_sent') . ': ' . $error
             );
         } else {
             $this->addFlash(
@@ -308,7 +308,7 @@ class CRUDController extends BaseCRUDController
                 } catch (LockException $e) {
                     $this->addFlash('sonata_flash_error', $this->admin->trans('flash_lock_error', array(
                                 '%name%' => $this->escapeHtml($this->admin->toString($object)),
-                                '%link_start%' => '<a href="'.$this->admin->generateObjectUrl('edit', $object).'">',
+                                '%link_start%' => '<a href="' . $this->admin->generateObjectUrl('edit', $object) . '">',
                                 '%link_end%' => '</a>',
                                     ), 'SonataAdminBundle'));
                 }

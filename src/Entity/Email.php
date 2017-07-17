@@ -206,9 +206,9 @@ class Email extends Spoolable
         $to = $this->field_to;
         $toArray = [];
 
-        if(strlen($to) > 0) {
+        if (strlen($to) > 0) {
             $toArray = explode(';', $to);
-            array_walk($toArray,function(&$item) {
+            array_walk($toArray, function (&$item) {
                 $item = trim($item);
             });
         }
@@ -443,17 +443,15 @@ class Email extends Spoolable
         $to = $this->testAddress;
         $toArray = [];
 
-        if(strlen($to) > 0) {
+        if (strlen($to) > 0) {
             $toArray = explode(';', $to);
-            array_walk($toArray,function(&$item) {
+            array_walk($toArray, function (&$item) {
                 $item = trim($item);
             });
         }
 
         return $toArray;
     }
-
-
 
     public function setTestAddress($testAddress = null)
     {

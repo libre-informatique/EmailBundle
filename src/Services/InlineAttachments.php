@@ -30,7 +30,7 @@ class InlineAttachments
 
         foreach ($imgs as $i => $img) {
             $att = Swift_Attachment::newInstance()
-                    ->setFileName($img[4].'.'.str_replace('image/', '', $img[2]))
+                    ->setFileName($img[4] . '.' . str_replace('image/', '', $img[2]))
                     ->setContentType($img[2])
                     ->setDisposition('inline')
                     ->setBody(base64_decode($img[3]))
@@ -39,7 +39,7 @@ class InlineAttachments
 
             // embedding the image
             $content = str_replace(
-                    $img[0], '<img '.$img[1].' '.$img[5].' src="'.$message->embed($att).'" />', $content
+                    $img[0], '<img ' . $img[1] . ' ' . $img[5] . ' src="' . $message->embed($att) . '" />', $content
             );
         }
 

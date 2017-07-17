@@ -41,7 +41,7 @@ class Tracking
      */
     public function addTracking($content, $address, $emailId)
     {
-        $updatedContent = $this->processLinks($content, $address, $emailId).$this->getTracker($address, $emailId);
+        $updatedContent = $this->processLinks($content, $address, $emailId) . $this->getTracker($address, $emailId);
 
         return $updatedContent;
     }
@@ -71,10 +71,10 @@ class Tracking
             );
 
             $content = str_replace($link[0],
-                    '<a '.$link[1].
-                    'href="'.$url.'"'.
-                    $link[3].'>'.
-                    $link[4].'</a>',
+                    '<a ' . $link[1] .
+                    'href="' . $url . '"' .
+                    $link[3] . '>' .
+                    $link[4] . '</a>',
                 $content
             );
         }
@@ -101,6 +101,6 @@ class Tracking
             UrlGeneratorInterface::ABSOLUTE_URL
         );
 
-        return '<img src="'.$url.'.png" alt="" width="1" height="1"/>';
+        return '<img src="' . $url . '.png" alt="" width="1" height="1"/>';
     }
 }

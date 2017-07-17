@@ -27,7 +27,7 @@ class EmailAdmin extends CoreAdmin
     protected function configureRoutes(RouteCollection $collection)
     {
         parent::configureRoutes($collection);
-        $collection->add('send', $this->getRouterIdParameter().'/send');
+        $collection->add('send', $this->getRouterIdParameter() . '/send');
     }
 
     protected function configureFormFields(FormMapper $mapper)
@@ -109,7 +109,7 @@ class EmailAdmin extends CoreAdmin
                 $ids = is_array($recipient_ids) ? $recipient_ids : [$recipient_ids];
                 $entities = $this->getModelManager()->findBy($recipient_class, ['id' => $ids]);
                 $rc = new \ReflectionClass($recipient_class);
-                $adder = 'add'.$rc->getShortName();
+                $adder = 'add' . $rc->getShortName();
                 foreach ($entities as $entity) {
                     $object->$adder($entity);
                     if ($entity->getEmail()) {

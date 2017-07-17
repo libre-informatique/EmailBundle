@@ -87,9 +87,9 @@ class EmailsListBlock extends TextBlockService
             $qb = $repo->getEmailMessagesQueryBuilder($targetEntity->getId());
         } else {
             $repo = $this->manager->getRepository(Email::class);
-            $targets = strtolower($rc->getShortName()).'s'; // ex. contacts
+            $targets = strtolower($rc->getShortName()) . 's'; // ex. contacts
             $qb = $repo->createQueryBuilder('e')
-                ->leftJoin('e.'.$targets, 't')
+                ->leftJoin('e.' . $targets, 't')
                 ->where('t.id = :targetid')
                 ->setParameter('targetid', $targetEntity->getId())
             ;
