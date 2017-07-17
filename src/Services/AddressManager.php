@@ -22,7 +22,8 @@ class AddressManager
      * @param  Email $mail
      * @return array
      */
-    public function manageAddresses($mail) {
+    public function manageAddresses($mail)
+    {
         return $email->getFieldToAsArray();
     }
 }
