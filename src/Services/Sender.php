@@ -83,14 +83,12 @@ class Sender
     {
         $this->email = $email;
         $this->attachments = $email->getAttachments();
-        // @TODO : getFieldTo() should return array (do the explode in this getter would be better)
-        $addresses = explode(';', $this->email->getFieldTo());
+        $addresses = $this->email->getFieldToAsArray();
 
         $this->needsSpool = count($addresses) > 1;
 
         if ($this->email->getIsTest()) {
-            // @TODO : getTestAddress() should return array (do the explode in this getter would be better)
-            $testAddressToArray = explode(';', $this->email->getTestAddress());
+            $testAddressToArray = $this->email->getTestAddressAsArray();
 
             return $this->directSend($testAddressToArray);
         }
