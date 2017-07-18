@@ -10,6 +10,8 @@ librinfo:
         email_list: 'Liste des emails'
     error:
         send_email_error: 'Erreur lors de l''envoi de l''email'
+    help:
+        field_to: 'Expéditeurs séparés par « ; » (ex: user1@test.com;user2@test.com)'
 librinfo_email:
     flash:
         message_not_sent: 'Message non envoyé'

@@ -197,6 +197,26 @@ class Email extends Spoolable
     }
 
     /**
+     * Get fieldToAsArray.
+     *
+     * @return array
+     */
+    public function getFieldToAsArray()
+    {
+        $to = $this->field_to;
+        $toArray = [];
+
+        if (strlen($to) > 0) {
+            $toArray = explode(';', $to);
+            array_walk($toArray, function (&$item) {
+                $item = trim($item);
+            });
+        }
+
+        return $toArray;
+    }
+
+    /**
      * Set fieldCc.
      *
      * @param string $fieldCc
@@ -413,6 +433,24 @@ class Email extends Spoolable
     public function getTestAddress()
     {
         return $this->testAddress;
+    }
+
+    /**
+     * @return array
+     */
+    public function getTestAddressAsArray()
+    {
+        $to = $this->testAddress;
+        $toArray = [];
+
+        if (strlen($to) > 0) {
+            $toArray = explode(';', $to);
+            array_walk($toArray, function (&$item) {
+                $item = trim($item);
+            });
+        }
+
+        return $toArray;
     }
 
     public function setTestAddress($testAddress = null)
