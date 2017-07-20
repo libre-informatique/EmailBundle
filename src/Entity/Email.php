@@ -213,7 +213,7 @@ class Email extends Spoolable
             });
         }
 
-        return $toArray;
+        return array_flip($toArray);
     }
 
     /**
