@@ -27,7 +27,7 @@ function templateSelect() {
 //retrieves template content and inserts it into tinymce editor
 function getTemplate(templateId) {
 
-    $.get('/librinfo/email/ajax/getTemplate/' + templateId, function (data) {
+    $.get(Routing.generate('librinfo_email.getTemplate',{'templateId': templateId}), function (data) {
 
         tinyMceInsert(data);
     });
@@ -52,20 +52,20 @@ function checkIsTest() {
 function inline() {
 
     $('.dropzone').on('click', '.inline', function (event) {
-        
+
         var id = $(event.target)
             .closest('.file-row')
             .data('file-id')
         ;
-        
+
         event.preventDefault();
-        
-        $.get('/librinfo/email/ajax/insert/' + id, function (data) {
+
+        $.get(Routing.generate('librinfo_email.insert',{'fileId': id}), function (data) {
 
             tinyMceInsert(data);
         });
     });
-    
+
     return false;
 }
 
@@ -76,7 +76,7 @@ function tinyMceInsert(data) {
 }
 
 var addEmailLinkListener = function(){
-    
+
     $('.email-link').click(function(e){
 
         $('#send-email-form').submit();
