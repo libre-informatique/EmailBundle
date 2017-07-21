@@ -24,6 +24,6 @@ class AddressManager
      */
     public function manageAddresses($mail)
     {
-        return $email->getFieldToAsArray();
+        return $mail->getFieldToAsArray();
     }
 }
