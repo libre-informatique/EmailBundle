@@ -15,6 +15,7 @@ namespace Librinfo\EmailBundle\Services\Test\Unit;
 use PHPUnit\Framework\TestCase;
 use Librinfo\EmailBundle\Services\Sender;
 use Librinfo\EmailBundle\Entity\Email;
+use Librinfo\EmailBundle\Services\AddressManager;
 
 class SenderTest extends TestCase
 {
@@ -29,7 +30,7 @@ class SenderTest extends TestCase
     protected $spoolMailerMock;
     protected $mail;
     protected $messageMock;
-
+      
     protected function setUp()
     {
         $this->spoolMailerMock = $this->createMock(\Swift_Mailer::class);
@@ -37,7 +38,7 @@ class SenderTest extends TestCase
         $this->messageMock = $this->createMock(\Swift_Message::class);
         $this->inlineAttachmentsHandlerMock = $this->createMock('Librinfo\EmailBundle\Services\InlineAttachments');
         $this->managerMock = $this->createMock('Doctrine\ORM\EntityManager');
-
+             
         $this->mail = new Email();
         $this->mail->setFieldFrom('testfrom@test.com');
         $this->mail->setFieldSubject('test');
@@ -47,7 +48,15 @@ class SenderTest extends TestCase
 
         $this->spoolMailerMock->method('send')->willReturn('spoolmail send');
         $this->directMailerMock->method('send')->willReturn('directmail send');
-        $this->object = new Sender($this->managerMock, $this->tracker, $this->inlineAttachmentsHandlerMock, $this->directMailerMock, $this->spoolMailerMock);
+
+        $this->object = new Sender(
+            $this->managerMock,
+            $this->tracker,
+            $this->inlineAttachmentsHandlerMock,
+            $this->directMailerMock,
+            $this->spoolMailerMock,
+            new AddressManager($this->mail)//$this->addressManagerMock
+        );
     }
 
     protected function tearDown()
