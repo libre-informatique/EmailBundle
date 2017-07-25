@@ -12,7 +12,8 @@
         "libre-informatique/media-bundle": ">=0.4",
         "stfalcon/tinymce-bundle": ">=2.1",
         "html2text/html2text": ">=4.0",
-        "symfony/swiftmailer-bundle": "^2.6"
+        "symfony/swiftmailer-bundle": "^2.6",
+        "friendsofsymfony/jsrouting-bundle": ">=1.6"
     },
     "require-dev": {
 	    "symfony/phpunit-bridge": ">=3.2"
