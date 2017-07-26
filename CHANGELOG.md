@@ -1,5 +1,19 @@
 # Change Log
 
+## [0.4.5](https://github.com/libre-informatique/EmailBundle/tree/0.4.5) (2017-07-26)
+[Full Changelog](https://github.com/libre-informatique/EmailBundle/compare/0.4.4...0.4.5)
+
+**Merged pull requests:**
+
+- DevKit updates for EmailBundle [\#32](https://github.com/libre-informatique/EmailBundle/pull/32) ([BlastCI](https://github.com/BlastCI))
+- Test fix & features [\#29](https://github.com/libre-informatique/EmailBundle/pull/29) ([FanchTheSystem](https://github.com/FanchTheSystem))
+- Test fix & features [\#28](https://github.com/libre-informatique/EmailBundle/pull/28) ([FanchTheSystem](https://github.com/FanchTheSystem))
+- DevKit updates for EmailBundle [\#27](https://github.com/libre-informatique/EmailBundle/pull/27) ([BlastCI](https://github.com/BlastCI))
+- DevKit updates for EmailBundle [\#26](https://github.com/libre-informatique/EmailBundle/pull/26) ([BlastCI](https://github.com/BlastCI))
+- Wip lisem [\#24](https://github.com/libre-informatique/EmailBundle/pull/24) ([FanchTheSystem](https://github.com/FanchTheSystem))
+- DevKit updates for EmailBundle [\#23](https://github.com/libre-informatique/EmailBundle/pull/23) ([BlastCI](https://github.com/BlastCI))
+- DevKit updates for EmailBundle [\#22](https://github.com/libre-informatique/EmailBundle/pull/22) ([BlastCI](https://github.com/BlastCI))
+
 ## [0.4.4](https://github.com/libre-informatique/EmailBundle/tree/0.4.4) (2017-06-27)
 [Full Changelog](https://github.com/libre-informatique/EmailBundle/compare/0.4.3...0.4.4)
 
