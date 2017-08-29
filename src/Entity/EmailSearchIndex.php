@@ -16,5 +16,4 @@ use Blast\BaseEntitiesBundle\Entity\SearchIndexEntity;
 
 class EmailSearchIndex extends SearchIndexEntity
 {
-    public static $fields = ['field_to', 'field_subject', 'textContent', 'sent'];
 }
