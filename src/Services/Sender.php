@@ -155,7 +155,7 @@ class Sender
         $content = $this->email->getContent();
 
         if ($message == null) {
-            $message = \Swift_Message::newInstance();
+            $message = new \Swift_Message();//::newInstance();
         }
 
         if (!is_array($to)) {
@@ -208,7 +208,7 @@ class Sender
     {
         if (count($this->attachments) > 0) {
             foreach ($this->attachments as $file) {
-                $attachment = \Swift_Attachment::newInstance()
+                $attachment = (new \Swift_Attachment()) // ::newInstance()
                         ->setFilename($file->getName())
                         ->setContentType($file->getMimeType())
                         ->setBody($file->getFile())

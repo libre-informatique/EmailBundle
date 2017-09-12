@@ -29,7 +29,7 @@ class InlineAttachments
         preg_match_all('!<img\s(.*)src="data:(image/\w+);base64,(.*)" alt="(.*)" (.*)/>!U', $content, $imgs, PREG_SET_ORDER);
 
         foreach ($imgs as $i => $img) {
-            $att = Swift_Attachment::newInstance()
+            $att = (new Swift_Attachment()) //::newInstance()
                     ->setFileName($img[4] . '.' . str_replace('image/', '', $img[2]))
                     ->setContentType($img[2])
                     ->setDisposition('inline')
@@ -39,7 +39,9 @@ class InlineAttachments
 
             // embedding the image
             $content = str_replace(
-                    $img[0], '<img ' . $img[1] . ' ' . $img[5] . ' src="' . $message->embed($att) . '" />', $content
+                $img[0],
+                '<img ' . $img[1] . ' ' . $img[5] . ' src="' . $message->embed($att) . '" />',
+                $content
             );
         }
 
