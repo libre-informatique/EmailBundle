@@ -85,7 +85,7 @@ class EmailStats
         }
 
         return array(
-            'link' => array_search($mostClicked, $linkStats),
+            'link'  => array_search($mostClicked, $linkStats),
             'value' => $mostClicked,
                 )
         ;
@@ -102,7 +102,7 @@ class EmailStats
     {
         if (!$linkStats) {
             return array(
-                'link' => '',
+                'link'  => '',
                 'value' => 0,
                     )
             ;
@@ -117,7 +117,7 @@ class EmailStats
         }
 
         return array(
-            'link' => array_search($leastClicked, $linkStats),
+            'link'  => array_search($leastClicked, $linkStats),
             'value' => $leastClicked,
                 )
         ;

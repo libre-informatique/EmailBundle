@@ -63,8 +63,8 @@ class Tracking
 
         foreach ($links as $link) {
             $url = $this->router->generate('librinfo_email.track_links', [
-                'emailId' => $emailId,
-                'recipient' => base64_encode($address),
+                'emailId'     => $emailId,
+                'recipient'   => base64_encode($address),
                 'destination' => base64_encode($link[2]),
             ],
             UrlGeneratorInterface::ABSOLUTE_URL
@@ -95,7 +95,7 @@ class Tracking
         $url = $this->router->generate(
             'librinfo_email.track_opens',
             [
-                'emailId' => $emailId,
+                'emailId'   => $emailId,
                 'recipient' => base64_encode($address),
             ],
             UrlGeneratorInterface::ABSOLUTE_URL

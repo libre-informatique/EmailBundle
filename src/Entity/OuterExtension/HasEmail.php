@@ -15,16 +15,16 @@ namespace Librinfo\EmailBundle\Entity\OuterExtension;
 trait HasEmail
 {
     /**
-     * @var Email
+     * @var string
      */
     private $email;
 
     /**
      * Get email.
      *
-     * @return Email
+     * @return string
      */
-    public function getEmail()
+    public function getEmail(): ?string
     {
         return $this->email;
     }
@@ -32,11 +32,11 @@ trait HasEmail
     /**
      * Set email.
      *
-     * @param Email $email
+     * @param string $email
      *
      * @return $this
      */
-    public function setEmail($email)
+    public function setEmail(?string $email)
     {
         $this->email = $email;
 

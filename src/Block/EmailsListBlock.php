@@ -45,9 +45,9 @@ class EmailsListBlock extends TextBlockService
         $emails = $this->getEmails($targetEntity, $maxResults);
 
         return $this->renderResponse($blockContext->getTemplate(), array(
-            'block' => $blockContext->getBlock(),
+            'block'    => $blockContext->getBlock(),
             'settings' => $settings,
-            'emails' => $emails,
+            'emails'   => $emails,
         ), $response);
     }
 
@@ -57,10 +57,10 @@ class EmailsListBlock extends TextBlockService
     public function configureSettings(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'content' => 'Insert your custom content here',
-            'template' => 'LibrinfoEmailBundle:Block:block_emails_list.html.twig',
+            'content'       => 'Insert your custom content here',
+            'template'      => 'LibrinfoEmailBundle:Block:block_emails_list.html.twig',
             'target_entity' => null,
-            'max_results' => 20,
+            'max_results'   => 20,
         ));
     }
 

@@ -87,13 +87,13 @@ class DbSpool extends \Swift_ConfigurableSpool
     /**
      * Queues a message.
      *
-     * @param \Swift_Mime_Message $message The message to store
+     * @param \Swift_Mime_SimpleMessage $message The message to store
      *
      * @return bool Whether the operation has succeeded
      *
      * @throws \Swift_IoException if the persist fails
      */
-    public function queueMessage(\Swift_Mime_Message $message)
+    public function queueMessage(\Swift_Mime_SimpleMessage $message)
     {
         $email = $this->repository->findOneBy(array('messageId' => $message->getId()));
         $email->setMessage(base64_encode(serialize($message)));
