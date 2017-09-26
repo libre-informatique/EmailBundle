@@ -3,7 +3,11 @@ services:
         class: Librinfo\EmailBundle\Admin\EmailAdmin
         arguments: [~, Librinfo\EmailBundle\Entity\Email, LibrinfoEmailBundle:CRUD]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: Email }
+            - name: sonata.admin
+              manager_type: orm
+              group: admin
+              label: librinfo.emailbundle.admin.email 
+              label_translator_strategy: blast_core.label.strategy.librinfo_email
         calls:
             - [ setTemplate, [edit, LibrinfoEmailBundle:CRUD:email_edit.html.twig]]
             - [ setTemplate, [show, LibrinfoEmailBundle:CRUD:email_show.html.twig]]
@@ -12,7 +16,11 @@ services:
         class: Librinfo\EmailBundle\Admin\EmailTemplateAdmin
         arguments: [~, Librinfo\EmailBundle\Entity\EmailTemplate, SonataAdminBundle:CRUD]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: EmailTemplate }
+            -  name: sonata.admin
+               manager_type: orm
+               group: admin
+               label: librinfo.emailbundle.admin.emailtemplate
+               label_translator_strategy: blast_core.label.strategy.librinfo_email
         calls:
             - [ setTemplate, [edit, LibrinfoEmailBundle:CRUD:email_template_edit.html.twig]]
 
@@ -20,10 +28,18 @@ services:
         class: Librinfo\EmailBundle\Admin\EmailReceiptAdmin
         arguments: [~, Librinfo\EmailBundle\Entity\EmailReceipt, SonataAdminBundle:CRUD]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: EmailReceipt }
-
+            -  name: sonata.admin
+               manager_type: orm
+               group: admin
+               label: librinfo.emailbundle.admin.emailreceipt 
+               label_translator_strategy: blast_core.label.strategy.librinfo_email
+                
     librinfo_email.admin.email_link:
         class: Librinfo\EmailBundle\Admin\EmailLinkAdmin
         arguments: [~, Librinfo\EmailBundle\Entity\EmailLink, SonataAdminBundle:CRUD]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: EmailLink }
+            - name: sonata.admin
+              manager_type: orm
+              group: admin
+              label: librinfo.emailbundle.admin.emaillink 
+              label_translator_strategy: blast_core.label.strategy.librinfo_email
