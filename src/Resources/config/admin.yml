@@ -22,7 +22,8 @@ services:
                label: librinfo.emailbundle.admin.emailtemplate
                label_translator_strategy: blast_core.label.strategy.librinfo_email
         calls:
-            - [ setTemplate, [edit, LibrinfoEmailBundle:CRUD:email_template_edit.html.twig]]
+        #    - [ setTemplate, [edit, LibrinfoEmailBundle:CRUD:email_template_edit.html.twig]]
+            - [ setTemplate, [edit, LibrinfoEmailBundle:CRUD:email_edit.html.twig]]
 
     librinfo_email.admin.email_receipt:
         class: Librinfo\EmailBundle\Admin\EmailReceiptAdmin
