@@ -1,3 +1,4 @@
+
 parameters:
     blast:
 ######  Email ##########
@@ -28,7 +29,7 @@ parameters:
                           class: framacalc
             Sonata\AdminBundle\Show\ShowMapper:
                 add:
-                    default:
+                    form_tab_general:
                         form_group_general:
                             field_to: ~
                             field_cc: ~
@@ -55,8 +56,8 @@ parameters:
                           class: framacalc
             Sonata\AdminBundle\Form\FormMapper:
                 add:
-                    form_group_general:
-                        '':
+                    form_tab_general:
+                        form_group_general:
                             field_from:
                                 type: text
                                 required: true
@@ -152,6 +153,7 @@ parameters:
                 add:
                     name: ~
                     content: ~
+                    
 
 ######  HasEmailMessages ##########
 
@@ -175,3 +177,85 @@ parameters:
                         '':
                             email:
                                 template: LibrinfoEmailBundle:CRUD:show_field_email.html.twig
+
+################################################################################
+# EmailReceipt
+################################################################################
+
+        Librinfo\EmailBundle\Entity\EmailReceipt:
+            # SHOW
+            Sonata\AdminBundle\Show\ShowMapper:
+                add:
+                    show_tab_general:
+                        show_group_general:
+                            address: ~
+                            date: ~
+                            id: ~
+    
+            # FORM
+            Sonata\AdminBundle\Form\FormMapper:
+                add:
+                    form_tab_general:
+                        form_group_general:
+                            address: ~
+                            date:
+                                type: doctrine_orm_date_range
+                                field_type: sonata_type_datetime_range_picker
+                            id: ~
+    
+            # LIST
+            Sonata\AdminBundle\Datagrid\ListMapper:
+                add:
+                    address: ~
+                    date: ~
+                    id: ~
+    
+
+            # FILTERS
+            Sonata\AdminBundle\Datagrid\DatagridMapper:
+                add:
+                    address: ~
+                    date: ~
+                    id: ~
+
+################################################################################
+# EmailLink
+################################################################################
+
+        Librinfo\EmailBundle\Entity\EmailLink:
+            # SHOW
+            Sonata\AdminBundle\Show\ShowMapper:
+                add:
+                    show_tab_general:
+                        show_group_general:
+                            destination: ~
+                            address: ~
+                            date: ~
+                            id: ~
+    
+            # FORM
+            Sonata\AdminBundle\Form\FormMapper:
+                add:
+                    form_tab_general:
+                        form_group_general:
+                            destination: ~
+                            address: ~
+                            date: ~
+                            id: ~
+    
+            # LIST
+            Sonata\AdminBundle\Datagrid\ListMapper:
+                add:
+                    destination: ~
+                    address: ~
+                    date: ~
+                    id: ~
+    
+
+            # FILTERS
+            Sonata\AdminBundle\Datagrid\DatagridMapper:
+                add:
+                    destination: ~
+                    address: ~
+                    date: ~
+                    id: ~
