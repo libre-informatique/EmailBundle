@@ -199,8 +199,12 @@ parameters:
                         form_group_general:
                             address: ~
                             date:
-                                type: doctrine_orm_date_range
-                                field_type: sonata_type_datetime_range_picker
+                                type: sonata_type_datetime_picker
+                                attr:
+                                    readonly: true
+                                disabled: true
+                                required: false
+                                dp_side_by_side: true
                             id: ~
     
             # LIST
@@ -240,7 +244,13 @@ parameters:
                         form_group_general:
                             destination: ~
                             address: ~
-                            date: ~
+                            date:
+                                type: sonata_type_datetime_picker
+                                attr:
+                                    readonly: true
+                                disabled: true
+                                required: false
+                                dp_side_by_side: true
                             id: ~
     
             # LIST
