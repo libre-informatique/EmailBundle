@@ -1,21 +1,48 @@
 librinfo:
     emailbundle:
-        emailtemplate:
+        emaillink:
+            breadcrumb:
+                emaillink_create: ~
+                emaillink_list: ~
             form:
-                field_subject: Objet
-                template: Modèle
-                content: Contenu
+                address: 'Addresses'
+                date: ~
+                destination: ~
+                id: Identifiant
+        emailreceipt:
+            breadcrumb:
+                emailreceipt_create: ~
+                emailreceipt_list: ~
+            form:
+                address: 'Addresses'
+                date: ~
+                id: Identifiant
+        emailtemplate:
+            breadcrumb:
+                email_create: ~
+                email_list: 'Liste des emails'
+                emailtemplate_create: ~
+                emailtemplate_list: ~
+            form:
                 attachments: Pièces jointe
                 circles: Groupes
-                field_from: Expéditeur
-                field_to: Destinataires additonnels 
-                field_cc: Destinataires en copie
+                content: Contenu
+                createdat: ~
+                createdby: ~
                 field_bcc: Destinataires en copie cachée
+                field_cc: Destinataires en copie
+                field_from: Expéditeur
+                field_subject: Objet
+                field_to: Destinataires additonnels 
                 istemplate: Enregistrer comme modèle
-                newtemplatename: Nom du modèle
                 istest: Envoi de Test
+                name: 'Nom'
+                newtemplatename: Nom du modèle
+                template: Modèle
                 testaddress: Addresse de test 
                 tracking: Suivi
+                updatedat: ~
+                updatedby: ~
         email:
             list:
                 circles: Groupes
@@ -40,69 +67,53 @@ librinfo:
                 updatedat: Modifié le 
                 createdby: Crée par
                 updatedby: Modifié par
-                
-librinfo.old:
-    label.old:
-        email_to.old: 'À'
-        email_cc.old: 'Cc'
-        email_bcc.old: 'Bcc'
-    msg.old:
-        no_emails_available.old: 'Aucun email'
-        sending_email.old: 'Envoi en cours...'
-    link.old:
-        email_list.old: 'Liste des emails'
-    error.old:
-        send_email_error.old: 'Erreur lors de l''envoi de l''email'
-    help.old:
-        field_to.old: 'Expéditeurs séparés par « ; » (ex.old: user1@test.com;user2@test.com)'
-librinfo_email.old:
-    flash.old:
-        message_not_sent.old: 'Message non envoyé'
-        message_sent.old: 'Message envoyé avec succès'
-'Email.old': 'Email'
-'Email List.old': 'Liste Emails'
-'Field From.old': 'Expéditeur'
-'Field To.old': 'Destinataires'
-'Field Cc.old': 'Cc'
-'Field Bcc.old': 'Bcc'
-'Field Subject.old': 'Objet'
-'Content.old': 'Contenu'
-'Text Content.old': 'Contenu texte'
-'Sent.old': 'Envoyé'
-'Tracking.old': 'Suivi'
-'Attachments.old': 'Pièces jointes'
-'Template.old': 'Modèle'
-'Is Template.old': 'Enregistrer comme modèle'
-'Is Test.old': 'Envoi de Test'
-'Test Address.old': 'Addresse de test'
-'New Template Name.old': 'Nom du modèle'
-'form_group_options.old': 'Options'
-'form_group_position.old': 'Fonction'
-'form_group_sales.old': 'Ventes'
-'form_group_ticketing.old': 'Billetterie'
-'form_group_phones.old': 'Numéros de téléphone'
-'form_group_members.old': 'Membres'
-'Updated At.old': 'Modifié le'
-'Created At.old': 'Créé le'
-'Updated By.old': 'Modifié par'
-'Created By.old': 'Créé par'
-'Add files.old': 'Ajouter des fichiers'
-'Send.old': 'Envoyer'
-'Duplicate.old': 'Dupliquer'
-'action_send.old': 'Envoyer'
-'action_duplicate.old': 'Dupliquer'
-'Read receipts.old': 'Accusé de réceptions'
-'Links clicked.old': 'Liens suivis'
-'Most clicked link.old:.old': 'Lien le plus suivi.old:'
-'Least clicked link.old:.old': 'Lien le moins suivi.old:'
-'form_group_tracking.old': 'Suivi'
-'Stats.old': 'Statistiques'
-'EmailTemplate.old': 'Modèles'
-'Name.old': 'Nom'
-'show_tab_emails.old': 'Emails'
-'form_group_attachments.old': 'Pièces jointes'
-'Email Create.old': 'Nouvel email'
-'Tracking is not enabled for this email.old': 'Le suivi n''est pas activé pour cet email'
-'No links clicked.old': 'Aucun lien suivi'
-'Message not sent.old': 'Message non envoyé'
-'Message sent.old': 'Message envoyé'
+
+
+
+'Email': 'Email'
+'Email List': 'Liste Emails'
+'Field From': 'Expéditeur'
+'Field To': 'Destinataires'
+'Field Cc': 'Cc'
+'Field Bcc': 'Bcc'
+'Field Subject': 'Objet'
+'Content': 'Contenu'
+'Text Content': 'Contenu texte'
+'Sent': 'Envoyé'
+'Tracking': 'Suivi'
+'Attachments': 'Pièces jointes'
+'Template': 'Modèle'
+'Is Template': 'Enregistrer comme modèle'
+'Is Test': 'Envoi de Test'
+'Test Address': 'Addresse de test'
+'New Template Name': 'Nom du modèle'
+'form_group_options': 'Options'
+'form_group_position': 'Fonction'
+'form_group_sales': 'Ventes'
+'form_group_ticketing': 'Billetterie'
+'form_group_phones': 'Numéros de téléphone'
+'form_group_members': 'Membres'
+'Updated At': 'Modifié le'
+'Created At': 'Créé le'
+'Updated By': 'Modifié par'
+'Created By': 'Créé par'
+'Add files': 'Ajouter des fichiers'
+'Send': 'Envoyer'
+'Duplicate': 'Dupliquer'
+'action_send': 'Envoyer'
+'action_duplicate': 'Dupliquer'
+'Read receipts': 'Accusé de réceptions'
+'Links clicked': 'Liens suivis'
+'Most clicked link:': 'Lien le plus suivi:'
+'Least clicked link:': 'Lien le moins suivi:'
+'form_group_tracking': 'Suivi'
+'Stats': 'Statistiques'
+'EmailTemplate': 'Modèles'
+'Name': 'Nom'
+'show_tab_emails': 'Emails'
+'form_group_attachments': 'Pièces jointes'
+'Email Create': 'Nouvel email'
+'Tracking is not enabled for this email': 'Le suivi n''est pas activé pour cet email'
+'No links clicked': 'Aucun lien suivi'
+'Message not sent': 'Message non envoyé'
+'Message sent': 'Message envoyé'
