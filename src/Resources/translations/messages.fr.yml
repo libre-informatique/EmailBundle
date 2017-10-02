@@ -2,33 +2,35 @@ librinfo:
     emailbundle:
         emaillink:
             breadcrumb:
-                emaillink_create: ~
-                emaillink_list: ~
+                emaillink_create: Créer un lien
+                emaillink_list: Liste des liens
             form:
-                address: 'Addresses'
-                date: ~
-                destination: ~
+                address: Addresses
+                date: Date
+                destination: Destinataire
                 id: Identifiant
         emailreceipt:
             breadcrumb:
-                emailreceipt_create: ~
-                emailreceipt_list: ~
+                emailreceipt_create: Créer une récéption ?
+                emailreceipt_list: Liste des emails réçus
             form:
-                address: 'Addresses'
-                date: ~
+                address: Addresses
+                date: Date
                 id: Identifiant
         emailtemplate:
             breadcrumb:
-                email_create: ~
-                email_list: 'Liste des emails'
-                emailtemplate_create: ~
-                emailtemplate_list: ~
+                email_create: Créer un email
+                email_list: Liste des emails
+                emailtemplate_create: Créer un modèle d'email
+                #'
+                emailtemplate_list: Liste des modèle d'email
+                #'
             form:
                 attachments: Pièces jointe
                 circles: Groupes
                 content: Contenu
-                createdat: ~
-                createdby: ~
+                createdat: Créé le
+                createdby: Crée par
                 field_bcc: Destinataires en copie cachée
                 field_cc: Destinataires en copie
                 field_from: Expéditeur
@@ -36,13 +38,13 @@ librinfo:
                 field_to: Destinataires additonnels 
                 istemplate: Enregistrer comme modèle
                 istest: Envoi de Test
-                name: 'Nom'
+                name: Nom
                 newtemplatename: Nom du modèle
                 template: Modèle
                 testaddress: Addresse de test 
                 tracking: Suivi
-                updatedat: ~
-                updatedby: ~
+                updatedat: Modifié le
+                updatedby: Modifié par
         email:
             list:
                 circles: Groupes
