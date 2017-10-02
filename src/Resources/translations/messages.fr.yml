@@ -1,4 +1,13 @@
 librinfo:
+    msg:
+        no_emails_available: 'Aucun email'
+        sending_email: 'Envoi en cours...'
+    link:
+        email_list: 'Liste des emails'
+    error:
+        send_email_error: 'Erreur lors de l''envoi de l''email'
+    help:
+        field_to: 'Expéditeurs séparés par « ; » (ex: user1@test.com;user2@test.com)'
     emailbundle:
         emaillink:
             breadcrumb:
@@ -71,7 +80,11 @@ librinfo:
                 updatedby: Modifié par
 
 
-
+librinfo_email:
+    flash:
+        message_not_sent: 'Message non envoyé'
+        message_sent: 'Message envoyé avec succès'
+        
 'Email': 'Email'
 'Email List': 'Liste Emails'
 'Field From': 'Expéditeur'
