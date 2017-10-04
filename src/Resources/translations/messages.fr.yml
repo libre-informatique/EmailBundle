@@ -9,85 +9,43 @@ librinfo:
     help:
         field_to: 'Expéditeurs séparés par « ; » (ex: user1@test.com;user2@test.com)'
     emailbundle:
-        emaillink:
-            breadcrumb:
-                emaillink_create: Créer un lien
-                emaillink_list: Liste des liens
-            form:
-                address: Addresses
-                date: Date
-                destination: Destinataire
-                id: Identifiant
-        emailreceipt:
-            breadcrumb:
-                emailreceipt_create: Créer une récéption ?
-                emailreceipt_list: Liste des emails réçus
-            form:
-                address: Addresses
-                date: Date
-                id: Identifiant
-        emailtemplate:
-            breadcrumb:
-                email_create: Créer un email
-                email_list: Liste des emails
-                emailtemplate_create: Créer un modèle d'email
-                #'
-                emailtemplate_list: Liste des modèle d'email
-                #'
-            form:
-                attachments: Pièces jointe
-                circles: Groupes
-                content: Contenu
-                createdat: Créé le
-                createdby: Crée par
-                field_bcc: Destinataires en copie cachée
-                field_cc: Destinataires en copie
-                field_from: Expéditeur
-                field_subject: Objet
-                field_to: Destinataires additonnels 
-                istemplate: Enregistrer comme modèle
-                istest: Envoi de Test
-                name: Nom
-                newtemplatename: Nom du modèle
-                template: Modèle
-                testaddress: Addresse de test 
-                tracking: Suivi
-                updatedat: Modifié le
-                updatedby: Modifié par
-        email:
-            breadcrumb:
-                email_list: Liste des emails
+        _action: Action
+        address: Adresses
+        attachments: Pièces jointe
+        circles: Groupes
+        content: Contenu
+        createdat: Créé le 
+        createdby: Crée par
+        date: Date
+        destination: Destinataire
+        email_create: Créer un email
+        email_list: Liste des emails
+        emaillink_create: Créer un lien
+        emaillink_list: Liste des liens
+        emailreceipt_create: Créer une récéption ?
+        emailreceipt_list: Liste des emails réçus
+        emailtemplate_create: 'Créer un modèle d''email'
+        emailtemplate_list: 'Liste des modèle d''email'
+        field_bcc: Destinataires en copie cachée
+        field_cc: Destinataires en copie
+        field_from: Expéditeur
+        field_subject: Objet
+        field_to: Destinataires
+        id: Identifiant
+        istemplate: Enregistrer comme modèle
+        istest: Envoi de Test
+        name: Nom
+        newtemplatename: Nom du modèle
+        sent: Envoyé
+        sent: Envoyé
+        stats: Suivi
+        template: Modèle
+        testaddress: Addresse de test 
+        textcontent: Contenu
+        tracking: Suivi
+        updatedat: Modifié le
+        updatedby: Modifié par
 
-            filter:
-                content: Contenu
-                createdat: Crée le
-                field_subject: Objet
-                field_to: Destinataires
-                sent: Envoyé
-                updatedat: Modifié le
-            list:
-                circles: Groupes
-                field_to: Destinataires additonnels 
-                field_subject: Objet 
-                sent: Envoyé
-                _action: Action
-            form:
-                createdat: Créé le 
-                updatedat: Modifié le 
-                createdby: Crée par
-                updatedby: Modifié par
-            show:
-                field_to: Destinataires additonnels 
-                field_cc: Destinataires en copie
-                field_bcc: Destinataires en copie cachée
-                field_subject: Objet 
-                textcontent: Contenu
-                circles: Groupes
-                stats: Suivi
-                createdat: Créé le 
-                updatedat: Modifié le 
-                createdby: Crée par
-                updatedby: Modifié par
 
 
 librinfo_email:
