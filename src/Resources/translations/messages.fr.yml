@@ -55,6 +55,16 @@ librinfo:
                 updatedat: Modifié le
                 updatedby: Modifié par
         email:
+            breadcrumb:
+                email_list: Liste des emails
+
+            filter:
+                content: Contenu
+                createdat: Crée le
+                field_subject: Objet
+                field_to: Destinataires
+                sent: Envoyé
+                updatedat: Modifié le
             list:
                 circles: Groupes
                 field_to: Destinataires additonnels 
