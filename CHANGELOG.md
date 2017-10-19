@@ -1,5 +1,13 @@
 # Change Log
 
+## [0.5.2](https://github.com/libre-informatique/EmailBundle/tree/0.5.2) (2017-10-19)
+[Full Changelog](https://github.com/libre-informatique/EmailBundle/compare/0.5.1...0.5.2)
+
+**Merged pull requests:**
+
+- Lisem fix & features [\#38](https://github.com/libre-informatique/EmailBundle/pull/38) ([FanchTheSystem](https://github.com/FanchTheSystem))
+- Label Translation Strategy Update [\#37](https://github.com/libre-informatique/EmailBundle/pull/37) ([FanchTheSystem](https://github.com/FanchTheSystem))
+
 ## [0.5.1](https://github.com/libre-informatique/EmailBundle/tree/0.5.1) (2017-09-15)
 [Full Changelog](https://github.com/libre-informatique/EmailBundle/compare/0.4.5...0.5.1)
 
