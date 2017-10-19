@@ -1,8 +1,4 @@
 librinfo:
-    label:
-        email_to: 'À'
-        email_cc: 'Cc'
-        email_bcc: 'Bcc'
     msg:
         no_emails_available: 'Aucun email'
         sending_email: 'Envoi en cours...'
@@ -12,10 +8,51 @@ librinfo:
         send_email_error: 'Erreur lors de l''envoi de l''email'
     help:
         field_to: 'Expéditeurs séparés par « ; » (ex: user1@test.com;user2@test.com)'
+    emailbundle:
+        _action: Action
+        address: Adresses
+        attachments: Pièces jointe
+        circles: Groupes
+        content: Contenu
+        createdat: Créé le 
+        createdby: Crée par
+        date: Date
+        destination: Destinataire
+        email_create: Créer un email
+        email_list: Liste des emails
+        emaillink_create: Créer un lien
+        emaillink_list: Liste des liens
+        emailreceipt_create: Créer une récéption ?
+        emailreceipt_list: Liste des emails réçus
+        emailtemplate_create: 'Créer un modèle d''email'
+        emailtemplate_list: 'Liste des modèle d''email'
+        field_bcc: Destinataires en copie cachée
+        field_cc: Destinataires en copie
+        field_from: Expéditeur
+        field_subject: Objet
+        field_to: Destinataires
+        id: Identifiant
+        istemplate: Enregistrer comme modèle
+        istest: Envoi de Test
+        name: Nom
+        newtemplatename: Nom du modèle
+        sent: Envoyé
+        sent: Envoyé
+        stats: Suivi
+        template: Modèle
+        testaddress: Addresse de test 
+        textcontent: Contenu
+        tracking: Suivi
+        updatedat: Modifié le
+        updatedby: Modifié par
+
+
+
 librinfo_email:
     flash:
         message_not_sent: 'Message non envoyé'
         message_sent: 'Message envoyé avec succès'
+        
 'Email': 'Email'
 'Email List': 'Liste Emails'
 'Field From': 'Expéditeur'
