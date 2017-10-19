@@ -41,6 +41,5 @@
         "psr-4": {
             "Librinfo\\EmailBundle\\": "src/"
         }
-    },
-    "version": "dev-wip-lisem"
+    }
 }
