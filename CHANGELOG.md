@@ -1,5 +1,15 @@
 # Change Log
 
+## [0.6.4](https://github.com/libre-informatique/EmailBundle/tree/0.6.4) (2017-11-03)
+[Full Changelog](https://github.com/libre-informatique/EmailBundle/compare/0.5.2...0.6.4)
+
+**Merged pull requests:**
+
+- DevKit updates for EmailBundle [\#42](https://github.com/libre-informatique/EmailBundle/pull/42) ([BlastCI](https://github.com/BlastCI))
+- DevKit updates for EmailBundle [\#41](https://github.com/libre-informatique/EmailBundle/pull/41) ([BlastCI](https://github.com/BlastCI))
+- Lisem fix & features [\#40](https://github.com/libre-informatique/EmailBundle/pull/40) ([FanchTheSystem](https://github.com/FanchTheSystem))
+- DevKit updates for EmailBundle [\#39](https://github.com/libre-informatique/EmailBundle/pull/39) ([BlastCI](https://github.com/BlastCI))
+
 ## [0.5.2](https://github.com/libre-informatique/EmailBundle/tree/0.5.2) (2017-10-19)
 [Full Changelog](https://github.com/libre-informatique/EmailBundle/compare/0.5.1...0.5.2)
 
