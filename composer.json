@@ -43,5 +43,5 @@
             "Librinfo\\EmailBundle\\": "src/"
         }
     },
-    "version": "dev-wip-lisem"
+    "version": "0.6.4"
 }
