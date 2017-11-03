@@ -82,6 +82,7 @@ parameters:
                             attachments:
                                 type: Librinfo\MediaBundle\Form\Type\DropzoneType
                                 required: false
+                                dropzoneTemplate: LibrinfoEmailBundle:dropzone:dropzone_template.mustache.twig
                             _options:
                                 fieldsOrder:
                                     - field_from
@@ -153,7 +154,7 @@ parameters:
                 add:
                     name: ~
                     content: ~
-                    
+
 
 ######  HasEmailMessages ##########
 
@@ -191,7 +192,7 @@ parameters:
                             address: ~
                             date: ~
                             id: ~
-    
+
             # FORM
             Sonata\AdminBundle\Form\FormMapper:
                 add:
@@ -206,14 +207,14 @@ parameters:
                                 required: false
                                 dp_side_by_side: true
                             id: ~
-    
+
             # LIST
             Sonata\AdminBundle\Datagrid\ListMapper:
                 add:
                     address: ~
                     date: ~
                     id: ~
-    
+
 
             # FILTERS
             Sonata\AdminBundle\Datagrid\DatagridMapper:
@@ -236,7 +237,7 @@ parameters:
                             address: ~
                             date: ~
                             id: ~
-    
+
             # FORM
             Sonata\AdminBundle\Form\FormMapper:
                 add:
@@ -252,7 +253,7 @@ parameters:
                                 required: false
                                 dp_side_by_side: true
                             id: ~
-    
+
             # LIST
             Sonata\AdminBundle\Datagrid\ListMapper:
                 add:
@@ -260,7 +261,7 @@ parameters:
                     address: ~
                     date: ~
                     id: ~
-    
+
 
             # FILTERS
             Sonata\AdminBundle\Datagrid\DatagridMapper:
